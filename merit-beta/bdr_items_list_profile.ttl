@@ -34,10 +34,10 @@ prez:BDRHumanFeatureProfile a
         "application/rdf+xml",
         "text/anot+turtle",
         "text/turtle" ;
+    shext:bnode-depth 2 ;
     sh:property [
         sh:path (
             sh:union (
-                     [ shext:bNodeDepth "2" ]
                      shext:allPredicateValues
                      ( geo:hasGeometry geo:asWKT )
                      ( schema:temporal shext:allPredicateValues )
@@ -74,10 +74,10 @@ prez:BDRMachineFeatureProfile a
         "application/rdf+xml",
         "text/anot+turtle",
         "text/turtle" ;
+    shext:bnode-depth 2 ;
     sh:property [
         sh:path (
             sh:union (
-                     [ shext:bNodeDepth "2" ]
                      shext:allPredicateValues
                      ( geo:hasGeometry geo:asWKT )
                      ( schema:temporal shext:allPredicateValues )
