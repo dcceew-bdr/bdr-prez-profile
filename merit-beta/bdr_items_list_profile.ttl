@@ -1,0 +1,96 @@
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix altr-ext: <http://www.w3.org/ns/dx/connegp/altr-ext#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix prez: <https://prez.dev/> .
+@prefix prof: <http://www.w3.org/ns/dx/prof/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shext: <http://example.com/shacl-extension#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+
+prez:BDRHumanFeatureProfile a
+        prof:Profile,
+        sh:NodeShape,
+        prez:ListingProfile ,
+        prez:ObjectProfile ;
+    dcterms:description "BDR Human Readable profile." ;
+    dcterms:identifier "bdr-feature-human"^^xsd:token ;
+    dcterms:title "BDR Feature Human Readable Profile" ;
+    altr-ext:constrainsClass
+        geo:Feature , rdfs:Resource ;
+    altr-ext:hasDefaultResourceFormat "application/geo+json" ;
+    altr-ext:hasNodeShape [
+        a sh:NodeShape ;
+        sh:targetClass geo:Feature ;
+        altr-ext:hasDefaultProfile prez:BDRHumanFeatureProfile
+    ] ;
+    altr-ext:hasResourceFormat
+        "application/geo+json",
+        "application/anot+ld+json",
+        "application/ld+json",
+        "application/rdf+xml",
+        "text/anot+turtle",
+        "text/turtle" ;
+    sh:property [
+        sh:path (
+            sh:union (
+                     [ shext:bNodeDepth "2" ]
+                     shext:allPredicateValues
+                     ( geo:hasGeometry geo:asWKT )
+                     ( schema:temporal shext:allPredicateValues )
+                     ( sosa:isFeatureOfInterestOf sosa:hasMember )
+                     ( sosa:isFeatureOfInterestOf sosa:hasMember sosa:hasSimpleResult )
+                     ( sosa:isFeatureOfInterestOf sosa:hasMember sosa:observedProperty )
+                     ( sosa:isFeatureOfInterestOf sosa:observedProperty )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
+                     ( [ sh:inversePath rdfs:member ] rdf:type )
+                     ( [ sh:inversePath rdfs:member ] [ sh:inversePath dcterms:isPartOf ] )
+                   )
+          )
+        ] ;
+.
+
+
+prez:BDRMachineFeatureProfile a
+        prof:Profile,
+        sh:NodeShape,
+        prez:ListingProfile ;
+    dcterms:description "BDR Machine Readable profile to return appropriate paths for a Feature." ;
+    dcterms:identifier "bdr-feature-machine"^^xsd:token ;
+    dcterms:title "BDR Feature Machine Readable Profile" ;
+    altr-ext:constrainsClass
+        geo:Feature , rdfs:Resource ;
+    altr-ext:hasDefaultResourceFormat "application/geo+json" ;
+    altr-ext:hasResourceFormat
+        "application/geo+json",
+        "application/anot+ld+json",
+        "application/ld+json",
+        "application/rdf+xml",
+        "text/anot+turtle",
+        "text/turtle" ;
+    sh:property [
+        sh:path (
+            sh:union (
+                     [ shext:bNodeDepth "2" ]
+                     shext:allPredicateValues
+                     ( geo:hasGeometry geo:asWKT )
+                     ( schema:temporal shext:allPredicateValues )
+                     ( sosa:isFeatureOfInterestOf sosa:hasMember )
+                     ( sosa:isFeatureOfInterestOf sosa:hasMember sosa:hasSimpleResult )
+                     ( sosa:isFeatureOfInterestOf sosa:hasMember sosa:observedProperty )
+                     ( sosa:isFeatureOfInterestOf sosa:observedProperty )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
+                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
+                   )
+          )
+        ] ;
+.
+

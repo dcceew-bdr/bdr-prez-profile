@@ -1,0 +1,431 @@
+<https://olis.dev/system> {
+
+  <https://act-vse> <https://olis.dev/isAliasFor> <https://prez-system-vg> .
+
+  <https://prez-system-vg> a <https://olis.dev/VirtualGraph>;
+    <https://olis.dev/isAliasFor> <https://prez/system>;
+    <https://schema.org/name> "Prez System VG" .
+  
+  <https://prez/system> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez System Real Graph" .
+
+}
+
+<https://prez/system> {
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa30518-node2711 a <https://prez.dev/ont/TemplateQuery>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> """PREFIX abis: <https://linked.data.gov.au/def/abis/>
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX schema: <https://schema.org/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX tern: <https://w3id.org/tern/ontologies/tern/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+CONSTRUCT {
+    ?focusNode ?fp1 ?fo .
+    ?focusNode geo:hasGeometry ?geom_node .
+    ?geom_node geo:asWKT ?geom_wkt .
+    ?fs ?fp2 ?focusNode .
+    ?fo ?fo_bnp ?fo_bno .
+    ?fo_bno ?fo_bn2p ?fo_bn2o .
+    ?oc  ?ocp1 ?oco .
+    ?ob ?obp1 ?obo .
+    ?oba ?obap ?obao .
+    ?oba_val ?oba_valp ?oba_valo .
+    ?obo ?obo_bnp ?obo_bno .
+    ?obs ?obp2 ?ob .
+    ?res ?rp ?ro .
+    ?resa ?resap ?resao .
+    ?resa_val ?resa_valp ?resa_valo .
+    ?ro ?ro_bnp ?ro_bno .
+    ?rs ?rp2 ?res .
+}
+FROM <http://www.ontotext.com/explicit>
+WHERE {
+    VALUES ?focusNode { UNDEF }
+    ?focusNode a geo:Feature .
+    ?focusNode ^schema:about? ?subjects .
+    OPTIONAL {
+        {
+            ?subjects sosa:isFeatureOfInterestOf|^sosa:hasFeatureOfInterest ?_ob .
+            FILTER NOT EXISTS {
+                # remove ?ob where its actually an observation collection
+                ?_ob sosa:hasMember ?_x .
+            }
+        } UNION {
+            ?subjects sosa:isFeatureOfInterestOf|^sosa:hasFeatureOfInterest ?_oc .
+            # this one gets all observations from collections and collections of collections
+            ?_oc sosa:hasMember+ ?_ob .
+        }
+    }
+    BIND(COALESCE(?_ob, false) as ?ob)
+    OPTIONAL {
+        ?ob ^sosa:isResultOf|sosa:hasResult ?_res .
+    }
+    BIND(COALESCE(?_res, false) as ?res)
+
+    BIND(COALESCE(?_oc, false) as ?oc)
+    ?subjects ?fp1 ?fo .
+    OPTIONAL {
+        ?focusNode geo:hasGeometry ?geom_node .
+        ?geom_node geo:asWKT ?geom_wkt .
+        FILTER(isIRI(?geom_node))
+    }
+    OPTIONAL {
+        BIND(isBLANK(?fo) as ?fo_is_blank)
+        # Bind ensures this Optional is run _AFTER_ ?fo is bound.
+        ?fo ?fo_bnp ?fo_bno .
+        FILTER(?fo_is_blank=true)
+        OPTIONAL {
+            BIND(isBLANK(?fo_bno) as ?fo_bno_is_blank)
+            ?fo_bno ?fo_bn2p ?fo_bn2o .
+            FILTER(?fo_bno_is_blank=true)
+        }
+    }
+    OPTIONAL {
+        # Don't include rdf:subject or rdf:object, don't include schema:about
+        VALUES ?fp2 {
+            sosa:hasMember rdfs:member sosa:isFeatureOfInterestOf sosa:isResultOf dcterms:hasPart schema:hasPart
+        }
+        ?fs ?fp2 ?subjects .
+    }
+    OPTIONAL {
+        {
+            ?ob ?obp1 ?obo .
+            FILTER(?obp1 != tern:hasAttribute)
+        } UNION {
+            ?ob tern:hasAttribute ?oba .
+            ?oba ?obap ?obao .
+            ?oba tern:hasValue ?oba_val .
+            ?oba_val ?oba_valp ?oba_valo .
+            BIND (tern:hasAttribute as ?obp1)
+            BIND (?oba as ?obo)
+        }
+
+        OPTIONAL {
+            BIND (isBLANK(?obo) as ?obo_is_blank)
+            FILTER (?obo_is_blank=true)
+            ?obo ?obo_bnp ?obo_bno .
+        }
+        OPTIONAL {
+            VALUES ?obp2 {
+                sosa:hasMember rdfs:member dcterms:hasPart schema:hasPart
+            }
+            ?obs ?obp2 ?ob .
+        }
+
+        {
+            # ?res is non-optional if ?ob is present
+            ?res ?rp ?ro .
+            FILTER(?rp != tern:hasAttribute)
+        } UNION {
+            ?res tern:hasAttribute ?resa .
+            ?resa ?resap ?resao .
+            ?resa tern:hasValue ?resa_val .
+            ?resa_val ?resa_valp ?resa_valo .
+            BIND (tern:hasAttribute as ?rp)
+            BIND (?resa as ?ro)
+        }
+        OPTIONAL {
+            # The BIND forces this optional to run _AFTER_ ?ro is bound.
+            BIND(isBLANK(?ro) as ?_ro_is_blank)
+            ?ro ?ro_bnp ?ro_bno .
+            FILTER (?_ro_is_blank=true)
+        }
+        OPTIONAL {
+            VALUES ?rp2 {
+                sosa:hasMember rdfs:member dcterms:hasPart schema:hasPart
+            }
+            ?rs ?rp2 ?res .
+        }
+    }
+    OPTIONAL {
+        ?oc ?ocp1 ?oco .
+    }
+}""";
+    <https://prez.dev/ont/forEndpoint> "http://www.opengis.net/ogcapi-features-1/1.0/feature" .
+
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-016F734670120337BB70DAF792927957 <http://www.w3.org/ns/shacl#class>
+      <http://www.opengis.net/ont/geosparql#FeatureCollection>;
+    <http://www.w3.org/ns/shacl#path> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-DD52B416D7E1B4277882CA4A639D77D7 .
+
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-3C982ED45A0AEAAB2303F2A1CC965410 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first>
+      <https://schema.org/isPartOf>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-40CC678D41086AB964C8878654DBD346 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first>
+      _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-4D4C7B2DC985DF78A54F6E80E833C19F;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-3C982ED45A0AEAAB2303F2A1CC965410 .
+
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-4D4C7B2DC985DF78A54F6E80E833C19F <http://www.w3.org/ns/shacl#inversePath>
+      <http://www.w3.org/2000/01/rdf-schema#member> .
+
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-A094AE7594CDE1B2BA0F622C6B60F2A7 <http://www.w3.org/ns/shacl#class>
+      <http://www.w3.org/ns/dcat#Dataset>;
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/isPartOf> .
+
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-DD52B416D7E1B4277882CA4A639D77D7 <http://www.w3.org/ns/shacl#inversePath>
+      <http://www.w3.org/2000/01/rdf-schema#member> .
+
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-F0F050183A03097C4A981516BB424AB4 <http://www.w3.org/ns/shacl#class>
+      <http://www.w3.org/ns/dcat#Dataset>;
+    <http://www.w3.org/ns/shacl#path> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-40CC678D41086AB964C8878654DBD346 .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-225FB56AB39C45276ED2C0A799444615 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "aclump-voc";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.neii.gov.au/def/voc/ACLUMP/australian-land-use-and-management-classification/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-2AEDC0D8331ED3380AE72405593ABF27 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-obsprops";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/obsprops/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-3D5631699AEF84363ABA364C687CB551 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-datatypes";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/datatypes/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-70DC83E2EE4C6371598620F511CC82E2 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-ds" .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-8E80F4F475DE40AB9C0C0AFE15BAE6BE <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "ibra7-codes";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://linked.data.gov.au/dataset/bioregion/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-B560D1F667F33D21689ACB7E0CB675BC <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "tern-cv";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://linked.data.gov.au/def/tern-cv/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-BB4B3F9DE23DD0DD5F262FFC0DFE31B3 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "emsa-cv";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/nrm/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-D4EAE82676063BF66970DC7E0F7E3D22 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-cat";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/catalogs/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-D8A7BB34B5D48429F4F478C665982173 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "abis-vocab-themes";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/abis/vocab-themes/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-EC774B3EA8763969FC81658922812253 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "data-roles";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/data-roles/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-EE38FB275C043B6A0C846C6188F3BF0B <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-orgs";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/orgs/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:node10416 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-occ";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/occurrences/> .
+
+  _:node10417 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-rec";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/records/> .
+
+  _:node10418 <http://purl.org/vocab/vann/preferredNamespacePrefix> "tern";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://w3id.org/tern/ontologies/tern/> .
+
+  _:node2852 <http://www.w3.org/ns/shacl#or> _:node2853;
+    <http://www.w3.org/ns/shacl#path> <http://purl.org/dc/terms/hasPart> .
+
+  _:node2853 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node2854;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  _:node2854 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Dataset> .
+
+  _:node2855 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Catalog>;
+    <http://www.w3.org/ns/shacl#path> _:node2856 .
+
+  _:node2856 <http://www.w3.org/ns/shacl#inversePath> <http://purl.org/dc/terms/hasPart> .
+
+  _:node2857 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Dataset>;
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/isPartOf> .
+
+  _:node2858 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Catalog>;
+    <http://www.w3.org/ns/shacl#path> _:node2859 .
+
+  _:node2859 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/isPartOf>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node2860 .
+
+  _:node2860 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node2861;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  _:node2861 <http://www.w3.org/ns/shacl#inversePath> <http://purl.org/dc/terms/hasPart> .
+
+  _:node29609 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-ds";
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/> .
+
+  _:node29610 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/temporal>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29611 .
+
+  _:node29611 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#inXSDDate>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  _:node29612 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/spatial>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29613 .
+
+  _:node29621 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/spatial>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29622 .
+
+  _:node29622 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.opengis.net/ont/geosparql#asWKT>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  _:node29623 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node29624;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29625 .
+
+  _:node29624 <http://www.w3.org/ns/shacl#inversePath> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> .
+
+  _:node29625 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/ns/sosa/hasResult>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29626 .
+
+  _:node29626 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node29627;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29628 .
+
+  _:node29627 <http://www.w3.org/ns/shacl#inversePath> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> .
+
+  _:node29628 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/ns/sosa/hasResult>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29629 .
+
+  _:node29629 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2000/01/rdf-schema#label>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  <http://example.com/ShapeName> <http://www.w3.org/ns/shacl#path> _:node29612 .
+
+  <http://example.com/SpatialQueryable> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+      <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "spatial";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "schema:spatial/geo:asWKT";
+    <http://www.w3.org/ns/shacl#name> "spatial";
+    <http://www.w3.org/ns/shacl#path> _:node29621 .
+
+  <http://example.com/TaxonNameQueryable> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+      <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "taxon-name";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "^sosa:hasFeatureOfInterest/sosa:hasResult/^sosa:hasFeatureOfInterest/sosa:hasResult/rdfs:label";
+    <http://www.w3.org/ns/shacl#name> "taxon-name";
+    <http://www.w3.org/ns/shacl#path> _:node29623 .
+
+  <http://example.com/TemporalFilterShape> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+      <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "temporal";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "<https://schema.org/temporal>/<http://www.w3.org/2006/time#inXSDDate>";
+    <http://www.w3.org/ns/shacl#name> "schema temporal / time in date";
+    <http://www.w3.org/ns/shacl#path> _:node29610 .
+
+  <http://example.org/catalogs-listing> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ListingEndpoint>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "Catalogs Listing";
+    <https://prez.dev/ont/apiPath> "/catalogs";
+    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL1> .
+
+  <http://example.org/catalogs-object> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ObjectEndpoint>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "Catalogs Object";
+    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}";
+    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL1> .
+
+  <http://example.org/collections-listing> a <https://prez.dev/ont/DynamicEndpoint>,
+      <https://prez.dev/ont/ListingEndpoint>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "Collections Listing";
+    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections";
+    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL2> .
+
+  <http://example.org/collections-object> a <https://prez.dev/ont/DynamicEndpoint>,
+      <https://prez.dev/ont/ObjectEndpoint>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "Collections Object";
+    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections/{recordsCollectionId}";
+    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL2> .
+
+  <http://example.org/items-listing> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ListingEndpoint>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "Items Listing";
+    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections/{recordsCollectionId}/items";
+    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL3> .
+
+  <http://example.org/items-object> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ObjectEndpoint>;
+    <http://www.w3.org/2000/01/rdf-schema#label> "Items Object";
+    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections/{recordsCollectionId}/items/{itemId}";
+    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL3> .
+
+  <http://example.org/ns#Feature> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <http://www.w3.org/ns/shacl#property> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-016F734670120337BB70DAF792927957,
+      _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-F0F050183A03097C4A981516BB424AB4;
+    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#Feature>;
+    <https://prez.dev/ont/hierarchyLevel> 2 .
+
+  <http://example.org/ns#FeatureCollections> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <http://www.w3.org/ns/shacl#property> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-A094AE7594CDE1B2BA0F622C6B60F2A7;
+    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#FeatureCollection>;
+    <https://prez.dev/ont/hierarchyLevel> 1 .
+
+  <http://example.org/ns#Object> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <https://prez.dev/ont/hierarchyLevel> 1 .
+
+  <http://example.org/ns#QueryablesGlobal> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#Feature>;
+    <https://prez.dev/ont/hierarchyLevel> 1 .
+
+  <http://example.org/ns#QueryablesLocal> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#Feature>;
+    <https://prez.dev/ont/hierarchyLevel> 2 .
+
+  <http://example.org/shape-R0-HL1> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <http://www.w3.org/ns/shacl#property> _:node2852;
+    <http://www.w3.org/ns/shacl#targetClass> <http://www.w3.org/ns/dcat#Catalog>;
+    <https://prez.dev/ont/hierarchyLevel> 1 .
+
+  <http://example.org/shape-R0-HL2> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <http://www.w3.org/ns/shacl#property> _:node2855;
+    <http://www.w3.org/ns/shacl#targetClass> <http://www.w3.org/ns/dcat#Dataset>;
+    <https://prez.dev/ont/hierarchyLevel> 2 .
+
+  <http://example.org/shape-R0-HL3> a <http://www.w3.org/ns/shacl#NodeShape>;
+    <http://www.w3.org/ns/shacl#property> _:node2857, _:node2858;
+    <http://www.w3.org/ns/shacl#targetClass> <https://linked.data.gov.au/def/abis/BiodiversityRecord>;
+    <https://prez.dev/ont/hierarchyLevel> 3 .
+
+  <http://www.opengis.net/ogcapi-features-1/1.0/feature> a <https://prez.dev/ont/OGCFeaturesEndpoint>,
+      <https://prez.dev/ont/ObjectEndpoint>;
+    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#Feature> .
+
+  <http://www.opengis.net/ogcapi-features-1/1.0/feature-collection> a <https://prez.dev/ont/OGCFeaturesEndpoint>,
+      <https://prez.dev/ont/ObjectEndpoint>;
+    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#FeatureCollections> .
+
+  <http://www.opengis.net/ogcapi-features-1/1.0/feature-collections> a <https://prez.dev/ont/ListingEndpoint>,
+      <https://prez.dev/ont/OGCFeaturesEndpoint>;
+    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#FeatureCollections> .
+
+  <http://www.opengis.net/ogcapi-features-1/1.0/features> a <https://prez.dev/ont/ListingEndpoint>,
+      <https://prez.dev/ont/OGCFeaturesEndpoint>;
+    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#Feature> .
+
+  <http://www.opengis.net/ogcapi-features-1/1.0/queryables-global> a <https://prez.dev/ont/ListingEndpoint>,
+      <https://prez.dev/ont/OGCFeaturesEndpoint>;
+    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#QueryablesGlobal> .
+
+  <http://www.opengis.net/ogcapi-features-1/1.0/queryables-local> a <https://prez.dev/ont/ListingEndpoint>,
+      <https://prez.dev/ont/OGCFeaturesEndpoint>;
+    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#QueryablesLocal> .
+
+  _:node32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://rdfs.org/ns/void#inDataset>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node33 .
+
+  _:node33 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/identifier>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  <http://example.com/Submission> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+      <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "nrm-submission";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "The NRM Submission the Feature was submitted as part of";
+    <http://www.w3.org/ns/shacl#name> "NRM Submission";
+    <http://www.w3.org/ns/shacl#path> _:node32 .
+
+}
+
+
+
