@@ -3,15 +3,27 @@
   <https://act-vse> <https://olis.dev/isAliasFor> <https://prez-system-vg> .
 
   <https://prez-system-vg> a <https://olis.dev/VirtualGraph>;
-    <https://olis.dev/isAliasFor> <https://prez/system>;
+    <https://olis.dev/isAliasFor> <https://prez/template-queries> , <https://prez/custom-endpoints> , <https://prez/profiles> , <https://prez/queryables> , <https://prez/namespace-prefixes>;
     <https://schema.org/name> "Prez System VG" .
-  
-  <https://prez/system> a <https://olis.dev/RealGraph>;
-    <https://schema.org/name> "Prez System Real Graph" .
+
+  <https://prez/template-queries> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Template Queries" .
+
+  <https://prez/custom-endpoints> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Custom Endpoints" .
+
+  <https://prez/custom-endpoints> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Profiles" .
+
+  <https://prez/custom-endpoints> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez CQL Queryables" .
+
+  <https://prez/custom-endpoints> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Namespace Prefixes" .
 
 }
 
-<https://prez/system> {
+<https://prez/template-queries> {
   _:genid-838ab4f83f5c430891fcb52e38aa64fa30518-node2711 a <https://prez.dev/ont/TemplateQuery>;
     <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> """PREFIX abis: <https://linked.data.gov.au/def/abis/>
 PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
