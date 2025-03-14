@@ -50,7 +50,7 @@ prez:BDRHumanFeatureProfile a
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
                      ( [ sh:inversePath rdfs:member ] rdf:type )
-                     ( [ sh:inversePath rdfs:member ] [ sh:inversePath dcterms:isPartOf ] )
+                     ( [ sh:inversePath rdfs:member ] schema:isPartOf )
                    )
           )
         ] ;
@@ -89,6 +89,8 @@ prez:BDRMachineFeatureProfile a
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
+                     ( [ sh:inversePath rdfs:member ] rdf:type )
+                     ( [ sh:inversePath rdfs:member ] schema:isPartOf )
                    )
           )
         ] ;
