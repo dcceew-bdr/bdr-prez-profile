@@ -34,11 +34,11 @@ prez:BDRHumanFeatureProfile a
         "application/rdf+xml",
         "text/anot+turtle",
         "text/turtle" ;
-    shext:bnode-depth 2 ;
     sh:property [
         sh:path (
             sh:union (
                      shext:allPredicateValues
+                     [ shext:bNodeDepth "2" ]
                      ( geo:hasGeometry geo:asWKT )
                      ( schema:temporal shext:allPredicateValues )
                      ( sosa:isFeatureOfInterestOf sosa:hasMember )
@@ -49,6 +49,7 @@ prez:BDRHumanFeatureProfile a
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
+                     [ sh:inversePath rdfs:member ]
                      ( [ sh:inversePath rdfs:member ] rdf:type )
                      ( [ sh:inversePath rdfs:member ] schema:isPartOf )
                    )
@@ -74,11 +75,11 @@ prez:BDRMachineFeatureProfile a
         "application/rdf+xml",
         "text/anot+turtle",
         "text/turtle" ;
-    shext:bnode-depth 2 ;
     sh:property [
         sh:path (
             sh:union (
                      shext:allPredicateValues
+                     [ shext:bNodeDepth "2" ]
                      ( geo:hasGeometry geo:asWKT )
                      ( schema:temporal shext:allPredicateValues )
                      ( sosa:isFeatureOfInterestOf sosa:hasMember )
@@ -89,6 +90,7 @@ prez:BDRMachineFeatureProfile a
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
+                     [ sh:inversePath rdfs:member ]
                      ( [ sh:inversePath rdfs:member ] rdf:type )
                      ( [ sh:inversePath rdfs:member ] schema:isPartOf )
                    )
