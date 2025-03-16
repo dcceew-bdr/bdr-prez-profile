@@ -1,0 +1,32 @@
+<https://olis.dev/system> {
+
+  <https://act-vse> <https://olis.dev/isAliasFor> <https://prez-system-vg> .
+
+  <https://prez-system-vg> a <https://olis.dev/VirtualGraph>;
+    <https://olis.dev/isAliasFor> <https://prez/template-queries> , <https://prez/custom-endpoints> , <https://prez/profiles> , <https://prez/queryables> , <https://prez/namespace-prefixes> ;
+    <https://schema.org/name> "Prez System VG" .
+
+  <https://prez/template-queries> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Template Queries" .
+
+  <https://prez/custom-endpoints> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Custom Endpoints" .
+
+  <https://prez/profiles> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Profiles" .
+
+  <https://prez/queryables> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez CQL Queryables" .
+
+  <https://prez/namespace-prefixes> a <https://olis.dev/RealGraph>;
+    <https://schema.org/name> "Prez Namespace Prefixes" .
+
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,196 @@
+<https://prez/template-queries> {
+  _:genid-838ab4f83f5c430891fcb52e38aa64fa30518-node2711 a <https://prez.dev/ont/TemplateQuery> ;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> """PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX schema: <https://schema.org/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX tern: <https://w3id.org/tern/ontologies/tern/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+CONSTRUCT {
+    ?focusNode ?fp1 ?fo .
+    ?focusNode geo:hasGeometry ?geom_node .
+    ?geom_node geo:asWKT ?geom_wkt .
+    ?fs ?fp2 ?focusNode .
+    ?fo ?fo_bnp ?fo_bno .
+    ?fo_bno ?fo_bn2p ?fo_bn2o .
+    ?ft ?ftp ?fto .
+    ?fto ?fto_p ?fto_o .
+    ?fsp ?fspp ?fspo .
+    ?fspo ?fspo_p ?fspo_o .
+    ?fa ?fap ?fao .
+    ?fa_val ?fa_valp ?fa_valo .
+    ?ob ?obp1 ?obo .
+    ?oba ?obap ?obao .
+    ?oba_val ?oba_valp ?oba_valo .
+    ?obo ?obo_bnp ?obo_bno .
+    ?obs ?obp2 ?ob .
+    ?res ?rp ?ro .
+    ?resa ?resap ?resao .
+    ?resa_val ?resa_valp ?resa_valo .
+    ?ro ?ro_bnp ?ro_bno .
+    ?rs ?rp2 ?res .
+}
+FROM <http://www.ontotext.com/explicit>
+WHERE {
+    VALUES ?focusNode { UNDEF }
+    ?focusNode a geo:Feature .
+    ?focusNode ^schema:about? ?subjects .
+    OPTIONAL {
+        ?subjects sosa:isFeatureOfInterestOf|^sosa:hasFeatureOfInterest ?_ob .
+        FILTER NOT EXISTS {
+            # remove ?ob where its actually an observation collection
+            ?_ob sosa:hasMember ?_x .
+        }
+    }
+    BIND(COALESCE(?_ob, false) as ?ob)
+    OPTIONAL {
+        ?ob ^sosa:isResultOf|sosa:hasResult ?_res .
+    }
+    BIND(COALESCE(?_res, false) as ?res)
+    {
+        ?subjects ?fp1 ?fo .
+        FILTER(?fp1 != tern:hasAttribute && ?fp1 != schema:temporal && ?fp1 != schema:spatial)
+    } UNION {
+        ?subjects tern:hasAttribute ?fa .
+        ?fa ?fap ?fao .
+        ?fa tern:hasValue ?fa_val .
+        ?fa_val ?fa_valp ?fa_valo .
+        BIND (tern:hasAttribute as ?fp1)
+        BIND (?fa as ?fo)
+    } UNION {
+        ?subjects schema:temporal ?ft .
+        ?ft ?ftp ?fto .
+        BIND (schema:temporal as ?fp1)
+        BIND (?ft as ?fo)
+        OPTIONAL {
+            BIND(isBLANK(?fto) as ?fto_is_blank)
+            ?fto ?fto_p ?fto_o .
+            FILTER(?fto_is_blank=true)
+        }
+    }  UNION {
+        ?subjects schema:spatial ?fsp .
+        ?fsp ?fspp ?fspo .
+        BIND (schema:spatial as ?fp1)
+        BIND (?fsp as ?fo)
+        OPTIONAL {
+            BIND(isBLANK(?fspo) as ?fspo_is_blank)
+            ?fspo ?fspo_p ?fspo_o .
+            FILTER(?fspo_is_blank=true)
+        }
+    }
+    OPTIONAL {
+        ?focusNode geo:hasGeometry ?geom_node .
+        ?geom_node geo:asWKT ?geom_wkt .
+        FILTER(isIRI(?geom_node))
+    }
+    OPTIONAL {
+        BIND(isBLANK(?fo) as ?fo_is_blank)
+        # Bind ensures this Optional is run _AFTER_ ?fo is bound.
+        ?fo ?fo_bnp ?fo_bno .
+        FILTER(?fo_is_blank=true)
+        OPTIONAL {
+            BIND(isBLANK(?fo_bno) as ?fo_bno_is_blank)
+            ?fo_bno ?fo_bn2p ?fo_bn2o .
+            FILTER(?fo_bno_is_blank=true)
+        }
+    }
+    OPTIONAL {
+        # Don't include rdf:subject or rdf:object, don't include schema:about
+        VALUES ?fp2 {
+            sosa:hasMember rdfs:member sosa:isFeatureOfInterestOf sosa:isResultOf dcterms:hasPart schema:hasPart
+        }
+        ?fs ?fp2 ?subjects .
+    }
+    OPTIONAL {
+        {
+            ?ob ?obp1 ?obo .
+            FILTER(?obp1 != tern:hasAttribute)
+        } UNION {
+            ?ob tern:hasAttribute ?oba .
+            ?oba ?obap ?obao .
+            ?oba tern:hasValue ?oba_val .
+            ?oba_val ?oba_valp ?oba_valo .
+            BIND (tern:hasAttribute as ?obp1)
+            BIND (?oba as ?obo)
+        }
+
+        OPTIONAL {
+            BIND (isBLANK(?obo) as ?obo_is_blank)
+            FILTER (?obo_is_blank=true)
+            ?obo ?obo_bnp ?obo_bno .
+        }
+        OPTIONAL {
+            VALUES ?obp2 {
+                sosa:hasMember rdfs:member dcterms:hasPart schema:hasPart
+            }
+            ?obs ?obp2 ?ob .
+        }
+
+        {
+            # ?res is non-optional if ?ob is present
+            ?res ?rp ?ro .
+            FILTER(?rp != tern:hasAttribute)
+        } UNION {
+            ?res tern:hasAttribute ?resa .
+            ?resa ?resap ?resao .
+            ?resa tern:hasValue ?resa_val .
+            ?resa_val ?resa_valp ?resa_valo .
+            BIND (tern:hasAttribute as ?rp)
+            BIND (?resa as ?ro)
+        }
+        OPTIONAL {
+            # The BIND forces this optional to run _AFTER_ ?ro is bound.
+            BIND(isBLANK(?ro) as ?_ro_is_blank)
+            ?ro ?ro_bnp ?ro_bno .
+            FILTER (?_ro_is_blank=true)
+        }
+        OPTIONAL {
+            VALUES ?rp2 {
+                sosa:hasMember rdfs:member dcterms:hasPart schema:hasPart
+            }
+            ?rs ?rp2 ?res .
+        }
+    }
+}""" ;
+    <https://prez.dev/ont/forEndpoint> "http://www.opengis.net/ogcapi-features-1/1.0/feature" .
+
+  _:bn a <https://prez.dev/ont/TemplateQuery> ;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> """PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+CONSTRUCT {
+    ?oc sosa:hasFeatureOfInterest ?focusNode .
+    ?focusNode sosa:isFeatureOfInterestOf ?oc .
+    ?oc ?ocp1 ?oco .
+    ?ocs ?ocp2 ?oc .
+    ?oco ?ocp3 ?oco2 .
+    ?oco2 ?ocp4 ?oco3 .
+}
+FROM <http://www.ontotext.com/explicit>
+#FROM <http://www.ontotext.com/explain>
+#FROM <http://www.ontotext.com/measure>
+WHERE {
+    VALUES ?focusNode { UNDEF }
+    ?focusNode a geo:Feature .
+    ?focusNode sosa:isFeatureOfInterestOf|^sosa:hasFeatureOfInterest ?oc .
+    # Filter only ObservationCollections using by checking for hasMember.
+    ?oc sosa:hasMember+ ?__ob .
+
+    ?oc ?ocp1 ?oco .
+    OPTIONAL {
+        ?ocs ?ocp2 ?oc .
+    }
+    OPTIONAL {
+        ?oc ?ocp1 ?oco .
+        FILTER (isBLANK(?oco))
+        ?oco ?ocp3 ?oco2 .
+        OPTIONAL {
+            FILTER(isBLANK(?oco2))
+            ?oco2 ?ocp4 ?oco3 .
+        }
+
+    }
+}""" ;
+    <https://prez.dev/ont/forEndpoint> "http://www.opengis.net/ogcapi-features-1/1.0/feature" .
+}

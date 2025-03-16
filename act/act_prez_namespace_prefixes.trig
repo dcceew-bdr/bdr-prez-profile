@@ -1,0 +1,59 @@
+<https://prez/namespace-prefixes> {
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-225FB56AB39C45276ED2C0A799444615 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "aclump-voc" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri>
+      "http://www.neii.gov.au/def/voc/ACLUMP/australian-land-use-and-management-classification/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-2AEDC0D8331ED3380AE72405593ABF27 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-obsprops" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/obsprops/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-3D5631699AEF84363ABA364C687CB551 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-datatypes" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/datatypes/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-70DC83E2EE4C6371598620F511CC82E2 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-ds" .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-8E80F4F475DE40AB9C0C0AFE15BAE6BE <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "ibra7-codes" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://linked.data.gov.au/dataset/bioregion/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-B560D1F667F33D21689ACB7E0CB675BC <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "tern-cv" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://linked.data.gov.au/def/tern-cv/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-BB4B3F9DE23DD0DD5F262FFC0DFE31B3 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "emsa-cv" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/nrm/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-D4EAE82676063BF66970DC7E0F7E3D22 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-cat" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/catalogs/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-D8A7BB34B5D48429F4F478C665982173 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "abis-vocab-themes" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/abis/vocab-themes/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-EC774B3EA8763969FC81658922812253 <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "data-roles" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/data-roles/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-EE38FB275C043B6A0C846C6188F3BF0B <http://purl.org/vocab/vann/preferredNamespacePrefix>
+      "bdr-orgs" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/orgs/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:node10416 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-occ" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/occurrences/> .
+
+  _:node10417 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-rec" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/records/> .
+
+  _:node10418 <http://purl.org/vocab/vann/preferredNamespacePrefix> "tern" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://w3id.org/tern/ontologies/tern/> .
+
+  _:node29609 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-ds" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/> .
+
+}

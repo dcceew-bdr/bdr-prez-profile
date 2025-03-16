@@ -1,0 +1,71 @@
+<https://prez/queryables> {
+
+  <http://example.com/Submission> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+    <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "nrm-submission";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "The NRM Submission the Feature was submitted as part of";
+    <http://www.w3.org/ns/shacl#name> "NRM Submission";
+    <http://www.w3.org/ns/shacl#path> _:node32 .
+
+  <http://example.com/SpatialQueryable> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+    <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "spatial";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "schema:spatial/geo:asWKT";
+    <http://www.w3.org/ns/shacl#name> "spatial";
+    <http://www.w3.org/ns/shacl#path> _:node29621 .
+
+  <http://example.com/TaxonNameQueryable> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+      <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "taxon-name";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "^sosa:hasFeatureOfInterest/sosa:hasResult/^sosa:hasFeatureOfInterest/sosa:hasResult/rdfs:label";
+    <http://www.w3.org/ns/shacl#name> "taxon-name";
+    <http://www.w3.org/ns/shacl#path> _:node29623 .
+
+  <http://example.com/TemporalFilterShape> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
+      <http://www.w3.org/ns/shacl#PropertyShape>;
+    <http://purl.org/dc/terms/identifier> "temporal";
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
+    <http://www.w3.org/ns/shacl#description> "<https://schema.org/temporal>/<http://www.w3.org/2006/time#inXSDDate>";
+    <http://www.w3.org/ns/shacl#name> "schema temporal / time in date";
+    <http://www.w3.org/ns/shacl#path> _:node29610 .
+
+  _:node29610 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/temporal>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29611 .
+
+  _:node29611 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#inXSDDate>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  _:node29612 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/spatial>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29613 .
+
+  _:node29621 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/spatial>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29622 .
+
+  _:node29622 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.opengis.net/ont/geosparql#asWKT>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  _:node29623 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node29624;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29625 .
+
+  _:node29624 <http://www.w3.org/ns/shacl#inversePath> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> .
+
+  _:node29625 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/ns/sosa/hasResult>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29626 .
+
+  _:node29626 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node29627;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29628 .
+
+  _:node29627 <http://www.w3.org/ns/shacl#inversePath> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> .
+
+  _:node29628 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/ns/sosa/hasResult>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29629 .
+
+  _:node29629 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2000/01/rdf-schema#label>;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+
+  <http://example.com/ShapeName> <http://www.w3.org/ns/shacl#path> _:node29612 .
+
+}
