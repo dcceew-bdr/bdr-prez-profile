@@ -56,6 +56,10 @@
                                      [ sh:inversePath rdfs:member ]
                                      ( [ sh:inversePath rdfs:member ] rdf:type )
                                      ( [ sh:inversePath rdfs:member ] schema:isPartOf )
+                                     [sh:inversePath schema:about]
+                                     ( [sh:inversePath schema:about] rdfs:comment )
+                                     ( [sh:inversePath schema:about] schema:identifier )
+                                     ( [sh:inversePath schema:about] schema:isPartOf )
                                  )
                     )
             ] ;
@@ -99,6 +103,10 @@
                                      [ sh:inversePath rdfs:member ]
                                      ( [ sh:inversePath rdfs:member ] rdf:type )
                                      ( [ sh:inversePath rdfs:member ] schema:isPartOf )
+                                     [sh:inversePath schema:about]
+                                     ( [sh:inversePath schema:about] rdfs:comment )
+                                     ( [sh:inversePath schema:about] schema:identifier )
+                                     ( [sh:inversePath schema:about] schema:isPartOf )
                                  )
                     )
             ] ;
