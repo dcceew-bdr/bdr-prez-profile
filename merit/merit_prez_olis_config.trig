@@ -1,16 +1,8 @@
 <https://olis.dev/system> {
 
-  <https://act-vse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+  <https://merit-sparql-endpoint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
             <https://olis.dev/VirtualSparqlEndpoint> ;
     <https://olis.dev/isAliasFor> <https://prez-system-vg> ;
-    <https://schema.org/name> "ACT Demo Virtual SPARQL Endpoint" .
+    <https://schema.org/name> "MERIT Virtual SPARQL Endpoint" .
 
 }
-
-
-
-
-
-
-
-

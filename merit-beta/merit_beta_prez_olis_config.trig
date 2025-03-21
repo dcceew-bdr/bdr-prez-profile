@@ -1,0 +1,16 @@
+<https://olis.dev/system> {
+
+    <https://merit-sparql-endpoint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+            <https://olis.dev/VirtualSparqlEndpoint> ;
+        <https://olis.dev/isAliasFor> <https://prez-system-vg> ;
+        <https://schema.org/name> "MERIT beta Virtual SPARQL Endpoint" .
+
+}
+
+
+
+
+
+
+
+
