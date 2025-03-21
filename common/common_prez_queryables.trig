@@ -68,7 +68,7 @@
 
   <http://example.com/ShapeName> <http://www.w3.org/ns/shacl#path> _:node29612 .
 
-  _:node32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://rdfs.org/ns/void#>;
+  _:node32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://rdfs.org/ns/void#inDataset>;
     <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node33 .
 
   _:node33 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/identifier>;
