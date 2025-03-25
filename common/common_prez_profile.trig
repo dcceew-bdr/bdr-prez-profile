@@ -39,7 +39,7 @@
         sh:property
             [
                 sh:path
-                    (
+                    [
                         sh:union (
                                      shext:allPredicateValues
                                      [ shext:bNodeDepth "2" ]
@@ -61,7 +61,7 @@
                                      ( [sh:inversePath schema:about] schema:identifier )
                                      ( [sh:inversePath schema:about] schema:isPartOf )
                                  )
-                    )
+                    ]
             ] ;
     .
 
@@ -86,7 +86,7 @@
         sh:property
             [
                 sh:path
-                    (
+                    [
                         sh:union (
                                      shext:allPredicateValues
                                      [ shext:bNodeDepth "2" ]
@@ -108,7 +108,7 @@
                                      ( [sh:inversePath schema:about] schema:identifier )
                                      ( [sh:inversePath schema:about] schema:isPartOf )
                                  )
-                    )
+                    ]
             ] ;
     .
 }
