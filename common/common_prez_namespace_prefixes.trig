@@ -47,6 +47,12 @@
   _:node10416 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-occ" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/occurrences/> .
 
+  _:node00001 <http://purl.org/vocab/vann/preferredNamespacePrefix> "fc" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/feature-collection/> .
+
+  _:node00002 <http://purl.org/vocab/vann/preferredNamespacePrefix> "oc" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/occurrence-collection/> .
+
   _:node10417 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-rec" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/records/> .
 
@@ -55,5 +61,8 @@
 
   _:node29609 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-ds" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/> .
+
+  _:node00003 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/bdr/> .
 
 }
