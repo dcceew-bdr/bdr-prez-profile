@@ -9,8 +9,6 @@ PREFIX tern: <https://w3id.org/tern/ontologies/tern/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 CONSTRUCT {
     ?focusNode ?fp1 ?fo .
-    ?focusNode geo:hasGeometry ?geom_node .
-    ?geom_node geo:asWKT ?geom_wkt .
     ?fs ?fp2 ?focusNode .
     ?fo ?fo_bnp ?fo_bno .
     ?fo_bno ?fo_bn2p ?fo_bn2o .
@@ -50,7 +48,7 @@ WHERE {
     BIND(COALESCE(?_res, false) as ?res)
     {
         ?subjects ?fp1 ?fo .
-        FILTER(?fp1 != tern:hasAttribute && ?fp1 != schema:temporal && ?fp1 != schema:spatial)
+        FILTER(?fo != ?ob && ?fp1 != tern:hasAttribute && ?fp1 != schema:temporal && ?fp1 != schema:spatial && ?fp1 != geo:hasGeometry && ?fp1 != geo:hasDefaultGeometry)
     } UNION {
         ?subjects tern:hasAttribute ?fa .
         ?fa ?fap ?fao .
@@ -69,9 +67,11 @@ WHERE {
             FILTER(?fto_is_blank=true)
         }
     }  UNION {
-        ?subjects schema:spatial ?fsp .
+        VALUES ?fs_pred { schema:spatial geo:hasGeometry geo:hasDefaultGeometry } 
+        ?subjects ?fs_pred ?fsp .
+        #this gets ?fsp geo:asWKT ?fspo
         ?fsp ?fspp ?fspo .
-        BIND (schema:spatial as ?fp1)
+        BIND (?fs_pred as ?fp1)
         BIND (?fsp as ?fo)
         OPTIONAL {
             BIND(isBLANK(?fspo) as ?fspo_is_blank)
@@ -80,15 +80,11 @@ WHERE {
         }
     }
     OPTIONAL {
-        ?focusNode geo:hasGeometry ?geom_node .
-        ?geom_node geo:asWKT ?geom_wkt .
-        FILTER(isIRI(?geom_node))
-    }
-    OPTIONAL {
         BIND(isBLANK(?fo) as ?fo_is_blank)
         # Bind ensures this Optional is run _AFTER_ ?fo is bound.
         ?fo ?fo_bnp ?fo_bno .
         FILTER(?fo_is_blank=true)
+        FILTER(BOUND(?fp1) && ?fo != ?ob && ?fp1 != tern:hasAttribute && ?fp1 != schema:temporal && ?fp1 != schema:spatial && ?fp1 != geo:hasGeometry && ?fp1 != geo:hasDefaultGeometry)
         OPTIONAL {
             BIND(isBLANK(?fo_bno) as ?fo_bno_is_blank)
             ?fo_bno ?fo_bn2p ?fo_bn2o .
@@ -114,10 +110,10 @@ WHERE {
             BIND (tern:hasAttribute as ?obp1)
             BIND (?oba as ?obo)
         }
-
         OPTIONAL {
             BIND (isBLANK(?obo) as ?obo_is_blank)
             FILTER (?obo_is_blank=true)
+            FILTER (BOUND(?obp1) && ?obp1 != tern:hasAttribute)
             ?obo ?obo_bnp ?obo_bno .
         }
         OPTIONAL {
@@ -126,7 +122,6 @@ WHERE {
             }
             ?obs ?obp2 ?ob .
         }
-
         {
             # ?res is non-optional if ?ob is present
             ?res ?rp ?ro .
@@ -144,6 +139,7 @@ WHERE {
             BIND(isBLANK(?ro) as ?_ro_is_blank)
             ?ro ?ro_bnp ?ro_bno .
             FILTER (?_ro_is_blank=true)
+            FILTER (BOUND(?rp) && ?rp != tern:hasAttribute)
         }
         OPTIONAL {
             VALUES ?rp2 {
