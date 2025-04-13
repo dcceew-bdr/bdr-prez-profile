@@ -44,6 +44,7 @@
                                      shext:allPredicateValues
                                      [ shext:bNodeDepth "2" ]
                                      ( geo:hasGeometry geo:asWKT )
+                                     ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
                                      ( sosa:isFeatureOfInterestOf sosa:hasMember )
                                      ( sosa:isFeatureOfInterestOf sosa:hasMember sosa:hasSimpleResult )
@@ -91,6 +92,7 @@
                                      shext:allPredicateValues
                                      [ shext:bNodeDepth "2" ]
                                      ( geo:hasGeometry geo:asWKT )
+                                     ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
                                      ( sosa:isFeatureOfInterestOf sosa:hasMember )
                                      ( sosa:isFeatureOfInterestOf sosa:hasMember sosa:hasSimpleResult )
