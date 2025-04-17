@@ -21,7 +21,7 @@
         dcterms:identifier "bdr-feature-human"^^xsd:token ;
         dcterms:title "BDR Feature Human Readable Profile" ;
         altr-ext:constrainsClass
-            geo:Feature, rdfs:Resource ;
+            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
         altr-ext:hasDefaultResourceFormat "application/geo+json" ;
         altr-ext:hasNodeShape
             [
@@ -75,7 +75,7 @@
         dcterms:identifier "bdr-feature-machine"^^xsd:token ;
         dcterms:title "BDR Feature Machine Readable Profile" ;
         altr-ext:constrainsClass
-            geo:Feature, rdfs:Resource ;
+            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
         altr-ext:hasDefaultResourceFormat "application/geo+json" ;
         altr-ext:hasResourceFormat
             "application/geo+json",
