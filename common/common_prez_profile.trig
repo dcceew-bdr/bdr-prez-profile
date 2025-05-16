@@ -11,6 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix schema: <https://schema.org/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix void: <http://rdfs.org/ns/void#> .
 
 <https://prez/profiles> {
     prez:BDRHumanFeatureProfile a
@@ -47,19 +48,18 @@
                                      ( geo:hasGeometry geo:asWKT )
                                      ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
-                                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember )
+                                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:usedProcedure )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember tern:resultDateTime )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:phenomenonTime )
+                                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:usedProcedure tern:methodType )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] tern:resultDateTime )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:phenomenonTime )
-                                     [ sh:inversePath rdfs:member ]
                                      ( [ sh:inversePath rdfs:member ] rdf:type )
                                      ( [ sh:inversePath rdfs:member ] schema:isPartOf )
-                                     [sh:inversePath schema:about]
                                      ( [sh:inversePath schema:about] rdfs:comment )
                                      ( [sh:inversePath schema:about] schema:identifier )
                                      ( [sh:inversePath schema:about] schema:isPartOf )
@@ -96,24 +96,61 @@
                                      ( geo:hasGeometry geo:asWKT )
                                      ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
-                                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember )
+                                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:usedProcedure )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember tern:resultDateTime )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:phenomenonTime )
+                                     ( [ sh:inversePath sosa:hasFeatureOfInterest ] rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasSimpleResult )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:usedProcedure tern:methodType )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] tern:resultDateTime )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:phenomenonTime )
-                                     [ sh:inversePath rdfs:member ]
                                      ( [ sh:inversePath rdfs:member ] rdf:type )
                                      ( [ sh:inversePath rdfs:member ] schema:isPartOf )
-                                     [sh:inversePath schema:about]
                                      ( [sh:inversePath schema:about] rdfs:comment )
                                      ( [sh:inversePath schema:about] schema:identifier )
                                      ( [sh:inversePath schema:about] schema:isPartOf )
+                                 )
+                    ]
+            ] ;
+    .
+
+    prez:MinimalFeatureListingProfile a
+            prof:Profile,
+            sh:NodeShape,
+            prez:ListingProfile,
+            prez:ObjectProfile ;
+        dcterms:description "Fast and minimal profile for listing Features." ;
+        dcterms:identifier "feature-listing-minimal"^^xsd:token ;
+        dcterms:title "Feature Listing Minimal Profile" ;
+        altr-ext:constrainsClass
+            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
+        altr-ext:hasDefaultResourceFormat "application/geo+json" ;
+        altr-ext:hasResourceFormat
+            "application/geo+json",
+            "application/anot+ld+json",
+            "application/ld+json",
+            "application/rdf+xml",
+            "text/anot+turtle",
+            "text/turtle" ;
+        sh:property
+            [
+                sh:path
+                    [
+                        sh:union (
+                                    rdf:type
+                                    schema:identifier
+                                    schema:isPartOf
+                                    void:inDataset
+                                    ( geo:hasGeometry geo:asWKT )
+                                    ( geo:hasDefaultGeometry geo:asWKT )
+                                    ( [ sh:inversePath rdfs:member ] rdf:type )
+                                    ( [ sh:inversePath rdfs:member ] schema:isPartOf )
+                                    ( [sh:inversePath schema:about] schema:identifier )
+                                    ( [sh:inversePath schema:about] schema:isPartOf )
                                  )
                     ]
             ] ;
