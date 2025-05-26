@@ -1,150 +1,120 @@
+@prefix sdo: <https://schema.org/> .
+@prefix prez: <https://prez.dev/ont/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix abis: <https://linked.data.gov.au/def/abis/> .
+@prefix ogc: <http://www.opengis.net/ogcapi-features-1/1.0/> .
+@prefix ex: <http://example.org/ns#> .
+
 <https://prez/custom-endpoints> {
 
-  <http://example.org/catalogs-listing> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ListingEndpoint>;
-    <http://www.w3.org/2000/01/rdf-schema#label> "Catalogs Listing";
-    <https://prez.dev/ont/apiPath> "/catalogs";
-    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL1> .
+  ex:catalogs-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+    rdfs:label "Catalogs Listing" ;
+    prez:apiPath "/catalogs" ;
+    prez:relevantShapes ex:shape-R0-HL1 .
 
-  <http://example.org/catalogs-object> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ObjectEndpoint>;
-    <http://www.w3.org/2000/01/rdf-schema#label> "Catalogs Object";
-    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}";
-    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL1> .
+  ex:catalogs-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+    rdfs:label "Catalogs Object" ;
+    prez:apiPath "/catalogs/{catalogId}" ;
+    prez:relevantShapes ex:shape-R0-HL1 .
 
-  <http://example.org/collections-listing> a <https://prez.dev/ont/DynamicEndpoint>,
-      <https://prez.dev/ont/ListingEndpoint>;
-    <http://www.w3.org/2000/01/rdf-schema#label> "Collections Listing";
-    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections";
-    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL2> .
+  ex:collections-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+    rdfs:label "Collections Listing" ;
+    prez:apiPath "/catalogs/{catalogId}/collections" ;
+    prez:relevantShapes ex:shape-R0-HL2 .
 
-  <http://example.org/collections-object> a <https://prez.dev/ont/DynamicEndpoint>,
-      <https://prez.dev/ont/ObjectEndpoint>;
-    <http://www.w3.org/2000/01/rdf-schema#label> "Collections Object";
-    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections/{recordsCollectionId}";
-    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL2> .
+  ex:collections-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+    rdfs:label "Collections Object" ;
+    prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}" ;
+    prez:relevantShapes ex:shape-R0-HL2 .
 
-  <http://example.org/items-listing> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ListingEndpoint>;
-    <http://www.w3.org/2000/01/rdf-schema#label> "Items Listing";
-    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections/{recordsCollectionId}/items";
-    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL3> .
+  ex:items-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+    rdfs:label "Items Listing" ;
+    prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items" ;
+    prez:relevantShapes ex:shape-R0-HL3 .
 
-  <http://example.org/items-object> a <https://prez.dev/ont/DynamicEndpoint>, <https://prez.dev/ont/ObjectEndpoint>;
-    <http://www.w3.org/2000/01/rdf-schema#label> "Items Object";
-    <https://prez.dev/ont/apiPath> "/catalogs/{catalogId}/collections/{recordsCollectionId}/items/{itemId}";
-    <https://prez.dev/ont/relevantShapes> <http://example.org/shape-R0-HL3> .
+  ex:items-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+    rdfs:label "Items Object" ;
+    prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items/{itemId}" ;
+    prez:relevantShapes ex:shape-R0-HL3 .
 
-  <http://example.org/ns#Feature> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <http://www.w3.org/ns/shacl#property> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-016F734670120337BB70DAF792927957,
-      _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-F0F050183A03097C4A981516BB424AB4;
-    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#Feature>;
-    <https://prez.dev/ont/hierarchyLevel> 2 .
+    ex:shape-R0-HL1 a sh:NodeShape ;
+    sh:targetClass dcat:Catalog , sdo:DataCatalog ;
+    prez:hierarchyLevel 1 ;
+    sh:property [
+      sh:path [ sh:alternativePath ( [ sh:inversePath dcterms:isPartOf ] dcterms:hasPart [ sh:inversePath sdo:isPartOf ] sdo:hasPart )] ;
+      sh:class schema:Dataset
+    ] .
 
-  <http://example.org/ns#FeatureCollections> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <http://www.w3.org/ns/shacl#property> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-A094AE7594CDE1B2BA0F622C6B60F2A7;
-    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#FeatureCollection>;
-    <https://prez.dev/ont/hierarchyLevel> 1 .
+  ex:shape-R0-HL2 a sh:NodeShape ;
+    sh:targetClass schema:Dataset ;
+    prez:hierarchyLevel 2 ;
+    sh:property [
+      sh:path [ sh:alternativePath ( [ sh:inversePath dcterms:hasPart ] dcterms:isPartOf [ sh:inversePath sdo:hasPart ] sdo:isPartOf )] ;
+      sh:or ( [ sh:class dcat:Catalog ] [sh:class sdo:DataCatalog] )
+    ] .
 
-  <http://example.org/ns#Object> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <https://prez.dev/ont/hierarchyLevel> 1 .
+  ex:shape-R0-HL3 a sh:NodeShape ;
+    sh:targetClass abis:BiodiversityRecord ;
+    prez:hierarchyLevel 3 ;
+    sh:property [
+      sh:path schema:isPartOf ;
+      sh:class schema:Dataset
+    ] , [
+      sh:path ( schema:isPartOf [ sh:alternativePath ( [ sh:inversePath dcterms:hasPart ] dcterms:isPartOf [ sh:inversePath sdo:hasPart ] sdo:isPartOf ) ] ) ;
+      sh:or ( [ sh:class dcat:Catalog ] [sh:class sdo:DataCatalog] )
+    ] .
 
-  <http://example.org/ns#QueryablesGlobal> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#Feature>;
-    <https://prez.dev/ont/hierarchyLevel> 1 .
+  ogc:feature a prez:OGCFeaturesEndpoint, prez:ObjectEndpoint ;
+    prez:relevantShapes ex:Feature .
 
-  <http://example.org/ns#QueryablesLocal> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#Feature>;
-    <https://prez.dev/ont/hierarchyLevel> 2 .
+  ogc:feature-collection a prez:OGCFeaturesEndpoint, prez:ObjectEndpoint ;
+    prez:relevantShapes ex:FeatureCollections .
 
-  <http://example.org/shape-R0-HL1> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <http://www.w3.org/ns/shacl#property> _:node2852;
-    <http://www.w3.org/ns/shacl#targetClass> <http://www.w3.org/ns/dcat#Catalog>;
-    <https://prez.dev/ont/hierarchyLevel> 1 .
+  ogc:feature-collections a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
+    prez:relevantShapes ex:FeatureCollections .
 
-  <http://example.org/shape-R0-HL2> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <http://www.w3.org/ns/shacl#property> _:node2855;
-    <http://www.w3.org/ns/shacl#targetClass> <http://www.w3.org/ns/dcat#Dataset>;
-    <https://prez.dev/ont/hierarchyLevel> 2 .
+  ogc:features a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
+    prez:relevantShapes ex:Feature .
 
-  <http://example.org/shape-R0-HL3> a <http://www.w3.org/ns/shacl#NodeShape>;
-    <http://www.w3.org/ns/shacl#property> _:node2857, _:node2858;
-    <http://www.w3.org/ns/shacl#targetClass> <https://linked.data.gov.au/def/abis/BiodiversityRecord>;
-    <https://prez.dev/ont/hierarchyLevel> 3 .
+  ogc:queryables-global a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
+    prez:relevantShapes ex:QueryablesGlobal .
 
-  <http://www.opengis.net/ogcapi-features-1/1.0/feature> a <https://prez.dev/ont/OGCFeaturesEndpoint>,
-      <https://prez.dev/ont/ObjectEndpoint>;
-    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#Feature> .
+  ogc:queryables-local a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
+    prez:relevantShapes ex:QueryablesLocal .
 
-  <http://www.opengis.net/ogcapi-features-1/1.0/feature-collection> a <https://prez.dev/ont/OGCFeaturesEndpoint>,
-      <https://prez.dev/ont/ObjectEndpoint>;
-    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#FeatureCollections> .
+  ex:Feature a sh:NodeShape ;
+    sh:targetClass geo:Feature ;
+    prez:hierarchyLevel 2 ;
+    sh:property [
+      sh:path [ sh:inversePath rdfs:member ] ;
+      sh:class geo:FeatureCollection
+    ] , [
+      sh:path ( [ sh:inversePath rdfs:member ] schema:isPartOf ) ;
+      sh:class schema:Dataset
+    ] .
 
-  <http://www.opengis.net/ogcapi-features-1/1.0/feature-collections> a <https://prez.dev/ont/ListingEndpoint>,
-      <https://prez.dev/ont/OGCFeaturesEndpoint>;
-    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#FeatureCollections> .
+  ex:FeatureCollections a sh:NodeShape ;
+    sh:targetClass geo:FeatureCollection ;
+    prez:hierarchyLevel 1 ;
+    sh:property [
+      sh:path schema:isPartOf ;
+      sh:class schema:Dataset
+    ] .
 
-  <http://www.opengis.net/ogcapi-features-1/1.0/features> a <https://prez.dev/ont/ListingEndpoint>,
-      <https://prez.dev/ont/OGCFeaturesEndpoint>;
-    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#Feature> .
+  ex:Object a sh:NodeShape ;
+    prez:hierarchyLevel 1 .
 
-  <http://www.opengis.net/ogcapi-features-1/1.0/queryables-global> a <https://prez.dev/ont/ListingEndpoint>,
-      <https://prez.dev/ont/OGCFeaturesEndpoint>;
-    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#QueryablesGlobal> .
+  ex:QueryablesGlobal a sh:NodeShape ;
+    sh:targetClass geo:Feature ;
+    prez:hierarchyLevel 1 .
 
-  <http://www.opengis.net/ogcapi-features-1/1.0/queryables-local> a <https://prez.dev/ont/ListingEndpoint>,
-      <https://prez.dev/ont/OGCFeaturesEndpoint>;
-    <https://prez.dev/ont/relevantShapes> <http://example.org/ns#QueryablesLocal> .
-
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-016F734670120337BB70DAF792927957 <http://www.w3.org/ns/shacl#class>
-      <http://www.opengis.net/ont/geosparql#FeatureCollection> ;
-    <http://www.w3.org/ns/shacl#path> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-DD52B416D7E1B4277882CA4A639D77D7 .
-
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-3C982ED45A0AEAAB2303F2A1CC965410 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first>
-      <https://schema.org/isPartOf> ;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-40CC678D41086AB964C8878654DBD346 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first>
-      _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-4D4C7B2DC985DF78A54F6E80E833C19F ;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>
-      _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-3C982ED45A0AEAAB2303F2A1CC965410 .
-
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-4D4C7B2DC985DF78A54F6E80E833C19F <http://www.w3.org/ns/shacl#inversePath>
-      <http://www.w3.org/2000/01/rdf-schema#member> .
-
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-A094AE7594CDE1B2BA0F622C6B60F2A7 <http://www.w3.org/ns/shacl#class>
-      <http://www.w3.org/ns/dcat#Dataset> ;
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/isPartOf> .
-
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-DD52B416D7E1B4277882CA4A639D77D7 <http://www.w3.org/ns/shacl#inversePath>
-      <http://www.w3.org/2000/01/rdf-schema#member> .
-
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-F0F050183A03097C4A981516BB424AB4 <http://www.w3.org/ns/shacl#class>
-      <http://www.w3.org/ns/dcat#Dataset> ;
-    <http://www.w3.org/ns/shacl#path> _:genid-838ab4f83f5c430891fcb52e38aa64fa490371-40CC678D41086AB964C8878654DBD346 .
-
-  _:node2852 <http://www.w3.org/ns/shacl#or> _:node2853;
-    <http://www.w3.org/ns/shacl#path> <http://purl.org/dc/terms/hasPart> .
-
-  _:node2853 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node2854;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-
-  _:node2854 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Dataset> .
-
-  _:node2855 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Catalog>;
-    <http://www.w3.org/ns/shacl#path> _:node2856 .
-
-  _:node2856 <http://www.w3.org/ns/shacl#inversePath> <http://purl.org/dc/terms/hasPart> .
-
-  _:node2857 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Dataset>;
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/isPartOf> .
-
-  _:node2858 <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/dcat#Catalog>;
-    <http://www.w3.org/ns/shacl#path> _:node2859 .
-
-  _:node2859 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/isPartOf>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node2860 .
-
-  _:node2860 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node2861;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-
-  _:node2861 <http://www.w3.org/ns/shacl#inversePath> <http://purl.org/dc/terms/hasPart> .
+  ex:QueryablesLocal a sh:NodeShape ;
+    sh:targetClass geo:Feature ;
+    prez:hierarchyLevel 2 .
 
 }

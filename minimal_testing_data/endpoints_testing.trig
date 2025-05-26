@@ -1,0 +1,73 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix abis: <https://linked.data.gov.au/def/abis/> .
+@prefix ex: <http://example.org/data#> .
+
+<http://example.org/fake-data> {
+
+ex:fake-catalog1 a dcat:Catalog ;
+    rdfs:label "Fake Wildlife Data Catalog" ;
+    dcterms:hasPart ex:fake-dataset1, ex:fake-dataset2 .
+
+ex:fake-catalog2 a dcat:Catalog ;
+    rdfs:label "Fake Marine Biology Catalog" ;
+    dcterms:hasPart ex:fake-dataset3, ex:fake-dataset4 .
+
+ex:fake-dataset1 a schema:Dataset ;
+    rdfs:label "Fake Australian Bird Observations" ;
+    schema:isPartOf ex:fake-featurecollection1 .
+
+ex:fake-dataset2 a schema:Dataset ;
+    rdfs:label "Fake Native Plant Species Records" ;
+    schema:isPartOf ex:fake-featurecollection1 .
+
+ex:fake-dataset3 a schema:Dataset ;
+    rdfs:label "Fake Coral Reef Monitoring Data" ;
+    schema:isPartOf ex:fake-featurecollection2 .
+
+ex:fake-dataset4 a schema:Dataset ;
+    rdfs:label "Fake Fish Population Surveys" ;
+    schema:isPartOf ex:fake-featurecollection2 .
+
+ex:fake-featurecollection1 a geo:FeatureCollection ;
+    rdfs:label "Fake Terrestrial Biodiversity Collection" ;
+    schema:isPartOf ex:fake-dataset1 ;
+    rdfs:member ex:fake-feature1, ex:fake-feature2 .
+
+ex:fake-featurecollection2 a geo:FeatureCollection ;
+    rdfs:label "Fake Marine Biodiversity Collection" ;
+    schema:isPartOf ex:fake-dataset3 ;
+    rdfs:member ex:fake-feature3, ex:fake-feature4 .
+
+ex:fake-feature1 a geo:Feature ;
+    rdfs:label "Fake Kookaburra Observation Site 1" .
+
+ex:fake-feature2 a geo:Feature ;
+    rdfs:label "Fake Eucalyptus Grove Location" .
+
+ex:fake-feature3 a geo:Feature ;
+    rdfs:label "Fake Great Barrier Reef Station A" .
+
+ex:fake-feature4 a geo:Feature ;
+    rdfs:label "Fake Ningaloo Marine Park Point B" .
+
+ex:fake-record1 a abis:BiodiversityRecord ;
+    rdfs:label "Fake Kookaburra Sighting Record 2024-001" ;
+    schema:isPartOf ex:fake-dataset1 .
+
+ex:fake-record2 a abis:BiodiversityRecord ;
+    rdfs:label "Fake Red Gum Tree Census Record 2024-002" ;
+    schema:isPartOf ex:fake-dataset2 .
+
+ex:fake-record3 a abis:BiodiversityRecord ;
+    rdfs:label "Fake Coral Health Assessment 2024-003" ;
+    schema:isPartOf ex:fake-dataset3 .
+
+ex:fake-record4 a abis:BiodiversityRecord ;
+    rdfs:label "Fake Clownfish Population Count 2024-004" ;
+    schema:isPartOf ex:fake-dataset4 .
+
+}
