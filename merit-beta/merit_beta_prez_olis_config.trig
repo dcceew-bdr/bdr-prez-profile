@@ -3,7 +3,11 @@
     <https://merit-sparql-endpoint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
             <https://olis.dev/VirtualSparqlEndpoint> ;
         <https://olis.dev/isAliasFor> <https://prez-system-vg> ;
+        <https://olis.dev/isAliasFor> <https://merit-data> ;
         <https://schema.org/name> "MERIT beta Virtual SPARQL Endpoint" .
+
+    <https://merit-data> a <https://olis.dev/VirtualGraph> ;
+        <https://schema.org/name> "MERIT Beta Virtual Graph" .
 
 }
 
