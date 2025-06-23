@@ -25,12 +25,6 @@
         altr-ext:constrainsClass
             geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
         altr-ext:hasDefaultResourceFormat "application/geo+json" ;
-        altr-ext:hasNodeShape
-            [
-                a sh:NodeShape ;
-                sh:targetClass geo:Feature ;
-                altr-ext:hasDefaultProfile prez:BDRHumanFeatureProfile
-            ] ;
         altr-ext:hasResourceFormat
             "application/geo+json",
             "application/anot+ld+json",
@@ -79,6 +73,12 @@
         altr-ext:constrainsClass
             geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
         altr-ext:hasDefaultResourceFormat "application/geo+json" ;
+        altr-ext:hasNodeShape
+            [
+                a sh:NodeShape ;
+                sh:targetClass geo:Feature ;
+                altr-ext:hasDefaultProfile prez:BDRHumanFeatureWithAttributesProfile
+            ] ;
         altr-ext:hasResourceFormat
             "application/geo+json",
             "application/anot+ld+json",
