@@ -1,77 +1,63 @@
+@prefix cql: <http://www.opengis.net/doc/IS/cql2/1.0/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
+@prefix dwciri: <http://rs.tdwg.org/dwc/iri/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
 <https://prez/queryables> {
 
   <http://example.com/Submission> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
-    <http://www.w3.org/ns/shacl#PropertyShape>;
+    sh:PropertyShape;
     <http://purl.org/dc/terms/identifier> "nrm-submission";
-    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
-    <http://www.w3.org/ns/shacl#description> "The NRM Submission the Feature was submitted as part of";
-    <http://www.w3.org/ns/shacl#name> "NRM Submission";
-    <http://www.w3.org/ns/shacl#path> _:node32 .
+    sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
+    sh:description "The NRM Submission the Feature was submitted as part of";
+    sh:name "NRM Submission";
+    sh:path ( void:inDataset schema:identifier ) .
 
   <http://example.com/SpatialQueryable> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
-    <http://www.w3.org/ns/shacl#PropertyShape>;
+    sh:PropertyShape;
     <http://purl.org/dc/terms/identifier> "spatial";
-    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
-    <http://www.w3.org/ns/shacl#description> "schema:spatial/geo:asWKT";
-    <http://www.w3.org/ns/shacl#name> "spatial";
-    <http://www.w3.org/ns/shacl#path> _:node29621 .
-
-  <http://example.com/TaxonNameQueryable> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
-      <http://www.w3.org/ns/shacl#PropertyShape>;
-    <http://purl.org/dc/terms/identifier> "taxon-name";
-    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
-    <http://www.w3.org/ns/shacl#description> "^sosa:hasFeatureOfInterest/sosa:hasResult/^sosa:hasFeatureOfInterest/sosa:hasResult/rdfs:label";
-    <http://www.w3.org/ns/shacl#name> "taxon-name";
-    <http://www.w3.org/ns/shacl#path> _:node29623 .
+    sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
+    sh:description "schema:spatial/geo:asWKT";
+    sh:name "spatial";
+    sh:path ( schema:spatial geo:asWKT ) .
 
   <http://example.com/TemporalFilterShape> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
-      <http://www.w3.org/ns/shacl#PropertyShape>;
+      sh:PropertyShape;
     <http://purl.org/dc/terms/identifier> "temporal";
-    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/2001/XMLSchema#string>;
-    <http://www.w3.org/ns/shacl#description> "<https://schema.org/temporal>/<http://www.w3.org/2006/time#inXSDDate>";
-    <http://www.w3.org/ns/shacl#name> "schema temporal / time in date";
-    <http://www.w3.org/ns/shacl#path> _:node29610 .
+    sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
+    sh:description "<https://schema.org/temporal>/<http://www.w3.org/2006/time#inXSDDate>";
+    sh:name "schema temporal / time in date" ;
+    sh:path ( schema:temporal time:inXSDDate ) .
 
-  _:node29610 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/temporal>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29611 .
+  <http://example.com/ShapeName> sh:path ( schema:spatial geo:asWKT ) .
 
-  _:node29611 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#inXSDDate>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+  ex:TaxonNameUsageQueryable
+    a sh:PropertyShape ;
+    a cql:Queryable ;
+    sh:path ( dwciri:toTaxon [ sh:alternativePath ( dwc:acceptedNameUsageID dwc:parentNameUsageID ) ] ) ;
+    sh:name "NSL TaxonNameUsage URI" ;
+    dcterms:identifier "nsl-name-usage" ;
+    sh:description "For efficient filtering based on known (full) NSL TaxonNameUsage Identifier URI" ;
+    sh:datatype xsd:string ;
+  .
 
-  _:node29612 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/spatial>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29613 .
-
-  _:node29621 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/spatial>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29622 .
-
-  _:node29622 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.opengis.net/ont/geosparql#asWKT>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-
-  _:node29623 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node29624;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29625 .
-
-  _:node29624 <http://www.w3.org/ns/shacl#inversePath> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> .
-
-  _:node29625 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/ns/sosa/hasResult>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29626 .
-
-  _:node29626 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:node29627;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29628 .
-
-  _:node29627 <http://www.w3.org/ns/shacl#inversePath> <http://www.w3.org/ns/sosa/hasFeatureOfInterest> .
-
-  _:node29628 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/ns/sosa/hasResult>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node29629 .
-
-  _:node29629 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2000/01/rdf-schema#label>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-
-  <http://example.com/ShapeName> <http://www.w3.org/ns/shacl#path> _:node29612 .
-
-  _:node32 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://rdfs.org/ns/void#inDataset>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:node33 .
-
-  _:node33 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <https://schema.org/identifier>;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+  ex:TaxonNameQueryable
+    a sh:PropertyShape ;
+    a cql:Queryable ;
+    sh:path ( dwciri:toTaxon [ sh:alternativePath ( dwc:acceptedNameUsageID dwc:parentNameUsageID ) ] prov:generated rdfs:label ) ;
+    sh:name "NSL TaxonName" ;
+    dcterms:identifier "nsl-name" ;
+    sh:description "Filtering based on (exact match) NSL TaxonName string" ;
+    sh:datatype xsd:string ;
+  .
 
 }

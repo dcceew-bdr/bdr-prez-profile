@@ -1,0 +1,36 @@
+### POST CQL Query
+POST http://localhost:8000/cql?_mediatype=application/sparql-query
+Content-Type: application/json
+
+{
+  "op": "in",
+  "args": [
+    {
+      "property": "nsl-name-usage"
+    },
+    [
+      "https://accepted-usage-val",
+      "https://parent-name-usage-val"
+    ]
+  ]
+}
+
+###
+
+### GET Catalogs with Filter
+GET http://localhost:8000/catalogs
+    ?_mediatype=application/sparql-query
+    &filter={
+        "op": "in",
+        "args": [
+            {
+                "property": "nsl-name-usage"
+            },
+            [
+                "https://accepted-usage-val",
+                "https://parent-name-usage-val"
+            ]
+        ]
+    }
+
+###
