@@ -65,4 +65,7 @@
   _:node00003 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/bdr/> .
 
+  _:node00004 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdrpr" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/bdr-pr/> .
+
 }
