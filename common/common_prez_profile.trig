@@ -13,9 +13,10 @@
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix prezprofiles: <https://prez/profiles/> .
 
 <https://prez/profiles> {
-    prez:BDRHumanFeatureProfile a
+    prezprofiles:BDRHumanFeatureProfile a
             prof:Profile,
             sh:NodeShape,
             prez:ListingProfile,
@@ -24,7 +25,7 @@
         dcterms:identifier "bdr-feature-human"^^xsd:token ;
         dcterms:title "BDR Feature Human Readable Profile" ;
         altr-ext:constrainsClass
-            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
+            geo:Feature , rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
         altr-ext:hasDefaultResourceFormat "application/geo+json" ;
         altr-ext:hasResourceFormat
             "application/geo+json",
@@ -65,7 +66,7 @@
             ] ;
     .
 
-    prez:BDRHumanFeatureWithAttributesProfile a
+    prezprofiles:BDRHumanFeatureWithAttributesProfile a
             prof:Profile,
             sh:NodeShape,
             prez:ListingProfile,
@@ -80,7 +81,7 @@
             [
                 a sh:NodeShape ;
                 sh:targetClass geo:Feature ;
-                altr-ext:hasDefaultProfile prez:BDRHumanFeatureWithAttributesProfile
+                altr-ext:hasDefaultProfile prezprofiles:BDRHumanFeatureWithAttributesProfile
             ] ;
         altr-ext:hasResourceFormat
             "application/geo+json",
@@ -128,7 +129,7 @@
     .
 
 
-    prez:BDRMachineFeatureProfile a
+    prezprofiles:BDRMachineFeatureProfile a
             prof:Profile,
             sh:NodeShape,
             prez:ListingProfile ;
@@ -179,7 +180,7 @@
             ] ;
     .
 
-    prez:BDRMachineFeatureWithAttributesProfile a
+    prezprofiles:BDRMachineFeatureWithAttributesProfile a
             prof:Profile,
             sh:NodeShape,
             prez:ListingProfile ;
@@ -236,7 +237,7 @@
             ] ;
     .
 
-    prez:MinimalFeatureListingProfile a
+    prezprofiles:MinimalFeatureListingProfile a
             prof:Profile,
             sh:NodeShape,
             prez:ListingProfile,
