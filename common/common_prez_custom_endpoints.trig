@@ -1,5 +1,5 @@
 @prefix sdo: <https://schema.org/> .
-@prefix prez: <https://prez.dev/ont/> .
+@prefix ont: <https://prez.dev/ont/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
@@ -12,39 +12,39 @@
 
 <https://prez/custom-endpoints> {
 
-  customendpoints:catalogs-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+  customendpoints:catalogs-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
     rdfs:label "Catalogs Listing" ;
-    prez:apiPath "/catalogs" ;
-    prez:relevantShapes customendpoints:shape-R0-HL1 .
+    ont:apiPath "/catalogs" ;
+    ont:relevantShapes customendpoints:shape-R0-HL1 .
 
-  customendpoints:catalogs-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+  customendpoints:catalogs-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
     rdfs:label "Catalogs Object" ;
-    prez:apiPath "/catalogs/{catalogId}" ;
-    prez:relevantShapes customendpoints:shape-R0-HL1 .
+    ont:apiPath "/catalogs/{catalogId}" ;
+    ont:relevantShapes customendpoints:shape-R0-HL1 .
 
-  customendpoints:collections-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+  customendpoints:collections-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
     rdfs:label "Collections Listing" ;
-    prez:apiPath "/catalogs/{catalogId}/collections" ;
-    prez:relevantShapes customendpoints:shape-R0-HL2 .
+    ont:apiPath "/catalogs/{catalogId}/collections" ;
+    ont:relevantShapes customendpoints:shape-R0-HL2 .
 
-  customendpoints:collections-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+  customendpoints:collections-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
     rdfs:label "Collections Object" ;
-    prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}" ;
-    prez:relevantShapes customendpoints:shape-R0-HL2 .
+    ont:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}" ;
+    ont:relevantShapes customendpoints:shape-R0-HL2 .
 
-  customendpoints:items-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+  customendpoints:items-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
     rdfs:label "Items Listing" ;
-    prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items" ;
-    prez:relevantShapes customendpoints:shape-R0-HL3 .
+    ont:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items" ;
+    ont:relevantShapes customendpoints:shape-R0-HL3 .
 
-  customendpoints:items-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+  customendpoints:items-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
     rdfs:label "Items Object" ;
-    prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items/{itemId}" ;
-    prez:relevantShapes customendpoints:shape-R0-HL3 .
+    ont:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items/{itemId}" ;
+    ont:relevantShapes customendpoints:shape-R0-HL3 .
 
     customendpoints:shape-R0-HL1 a sh:NodeShape ;
     sh:targetClass dcat:Catalog , sdo:DataCatalog ;
-    prez:hierarchyLevel 1 ;
+    ont:hierarchyLevel 1 ;
     sh:property [
       sh:path [ sh:alternativePath ( [ sh:inversePath dcterms:isPartOf ] dcterms:hasPart [ sh:inversePath sdo:isPartOf ] sdo:hasPart )] ;
       sh:class schema:Dataset
@@ -52,7 +52,7 @@
 
   customendpoints:shape-R0-HL2 a sh:NodeShape ;
     sh:targetClass schema:Dataset ;
-    prez:hierarchyLevel 2 ;
+    ont:hierarchyLevel 2 ;
     sh:property [
       sh:path [ sh:alternativePath ( [ sh:inversePath dcterms:hasPart ] dcterms:isPartOf [ sh:inversePath sdo:hasPart ] sdo:isPartOf )] ;
       sh:or ( [ sh:class dcat:Catalog ] [sh:class sdo:DataCatalog] )
@@ -60,7 +60,7 @@
 
   customendpoints:shape-R0-HL3 a sh:NodeShape ;
     sh:targetClass abis:BiodiversityRecord ;
-    prez:hierarchyLevel 3 ;
+    ont:hierarchyLevel 3 ;
     sh:property [
       sh:path schema:isPartOf ;
       sh:class schema:Dataset
@@ -69,27 +69,27 @@
       sh:or ( [ sh:class dcat:Catalog ] [sh:class sdo:DataCatalog] )
     ] .
 
-  ogc:feature a prez:OGCFeaturesEndpoint, prez:ObjectEndpoint ;
-    prez:relevantShapes customendpoints:Feature .
+  ogc:feature a ont:OGCFeaturesEndpoint, ont:ObjectEndpoint ;
+    ont:relevantShapes customendpoints:Feature .
 
-  ogc:feature-collection a prez:OGCFeaturesEndpoint, prez:ObjectEndpoint ;
-    prez:relevantShapes customendpoints:FeatureCollections .
+  ogc:feature-collection a ont:OGCFeaturesEndpoint, ont:ObjectEndpoint ;
+    ont:relevantShapes customendpoints:FeatureCollections .
 
-  ogc:feature-collections a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes customendpoints:FeatureCollections .
+  ogc:feature-collections a ont:ListingEndpoint, ont:OGCFeaturesEndpoint ;
+    ont:relevantShapes customendpoints:FeatureCollections .
 
-  ogc:features a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes customendpoints:Feature .
+  ogc:features a ont:ListingEndpoint, ont:OGCFeaturesEndpoint ;
+    ont:relevantShapes customendpoints:Feature .
 
-  ogc:queryables-global a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes customendpoints:QueryablesGlobal .
+  ogc:queryables-global a ont:ListingEndpoint, ont:OGCFeaturesEndpoint ;
+    ont:relevantShapes customendpoints:QueryablesGlobal .
 
-  ogc:queryables-local a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes customendpoints:QueryablesLocal .
+  ogc:queryables-local a ont:ListingEndpoint, ont:OGCFeaturesEndpoint ;
+    ont:relevantShapes customendpoints:QueryablesLocal .
 
   customendpoints:Feature a sh:NodeShape ;
     sh:targetClass geo:Feature ;
-    prez:hierarchyLevel 2 ;
+    ont:hierarchyLevel 2 ;
     sh:property [
       sh:path [ sh:inversePath rdfs:member ] ;
       sh:class geo:FeatureCollection
@@ -100,21 +100,21 @@
 
   customendpoints:FeatureCollections a sh:NodeShape ;
     sh:targetClass geo:FeatureCollection ;
-    prez:hierarchyLevel 1 ;
+    ont:hierarchyLevel 1 ;
     sh:property [
       sh:path schema:isPartOf ;
       sh:class schema:Dataset
     ] .
 
   customendpoints:Object a sh:NodeShape ;
-    prez:hierarchyLevel 1 .
+    ont:hierarchyLevel 1 .
 
   customendpoints:QueryablesGlobal a sh:NodeShape ;
     sh:targetClass geo:Feature ;
-    prez:hierarchyLevel 1 .
+    ont:hierarchyLevel 1 .
 
   customendpoints:QueryablesLocal a sh:NodeShape ;
     sh:targetClass geo:Feature ;
-    prez:hierarchyLevel 2 .
+    ont:hierarchyLevel 2 .
 
 }
