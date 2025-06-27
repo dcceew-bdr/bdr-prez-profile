@@ -5,44 +5,41 @@
 @prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
 @prefix dwciri: <http://rs.tdwg.org/dwc/iri/> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix ex: <http://example.com/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix prezqueryables: <https://prez/queryables/> .
 
 <https://prez/queryables> {
 
-  <http://example.com/Submission> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
-    sh:PropertyShape;
+  prezqueryables:Submission a cql:Queryable ;
+    a sh:PropertyShape;
     <http://purl.org/dc/terms/identifier> "nrm-submission";
     sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
     sh:description "The NRM Submission the Feature was submitted as part of";
     sh:name "NRM Submission";
     sh:path ( void:inDataset schema:identifier ) .
 
-  <http://example.com/SpatialQueryable> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
-    sh:PropertyShape;
+  prezqueryables:SpatialQueryable a cql:Queryable ;
+    a sh:PropertyShape;
     <http://purl.org/dc/terms/identifier> "spatial";
     sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
     sh:description "schema:spatial/geo:asWKT";
     sh:name "spatial";
     sh:path ( schema:spatial geo:asWKT ) .
 
-  <http://example.com/TemporalFilterShape> a <http://www.opengis.net/doc/IS/cql2/1.0/Queryable>,
-      sh:PropertyShape;
+  prezqueryables:TemporalFilterShape a cql:Queryable ;
+    a sh:PropertyShape;
     <http://purl.org/dc/terms/identifier> "temporal";
     sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
     sh:description "<https://schema.org/temporal>/<http://www.w3.org/2006/time#inXSDDate>";
     sh:name "schema temporal / time in date" ;
     sh:path ( schema:temporal time:inXSDDate ) .
 
-  <http://example.com/ShapeName> sh:path ( schema:spatial geo:asWKT ) .
-
-  ex:TaxonNameUsageQueryable
+  prezqueryables:TaxonNameUsageQueryable a cql:Queryable ;
     a sh:PropertyShape ;
-    a cql:Queryable ;
     sh:path ( dwciri:toTaxon [ sh:alternativePath ( dwc:acceptedNameUsageID dwc:parentNameUsageID ) ] ) ;
     sh:name "NSL TaxonNameUsage URI" ;
     dcterms:identifier "nsl-name-usage" ;
@@ -50,9 +47,8 @@
     sh:datatype xsd:string ;
   .
 
-  ex:TaxonNameQueryable
+  prezqueryables:TaxonNameQueryable a cql:Queryable ;
     a sh:PropertyShape ;
-    a cql:Queryable ;
     sh:path ( dwciri:toTaxon [ sh:alternativePath ( dwc:acceptedNameUsageID dwc:parentNameUsageID ) ] prov:generated rdfs:label ) ;
     sh:name "NSL TaxonName" ;
     dcterms:identifier "nsl-name" ;
