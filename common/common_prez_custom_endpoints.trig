@@ -8,41 +8,41 @@
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix abis: <https://linked.data.gov.au/def/abis/> .
 @prefix ogc: <http://www.opengis.net/ogcapi-features-1/1.0/> .
-@prefix ex: <http://example.org/ns#> .
+@prefix customendpoints: <https://prez/custom-endpoints/> .
 
 <https://prez/custom-endpoints> {
 
-  ex:catalogs-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+  customendpoints:catalogs-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
     rdfs:label "Catalogs Listing" ;
     prez:apiPath "/catalogs" ;
-    prez:relevantShapes ex:shape-R0-HL1 .
+    prez:relevantShapes customendpoints:shape-R0-HL1 .
 
-  ex:catalogs-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+  customendpoints:catalogs-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
     rdfs:label "Catalogs Object" ;
     prez:apiPath "/catalogs/{catalogId}" ;
-    prez:relevantShapes ex:shape-R0-HL1 .
+    prez:relevantShapes customendpoints:shape-R0-HL1 .
 
-  ex:collections-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+  customendpoints:collections-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
     rdfs:label "Collections Listing" ;
     prez:apiPath "/catalogs/{catalogId}/collections" ;
-    prez:relevantShapes ex:shape-R0-HL2 .
+    prez:relevantShapes customendpoints:shape-R0-HL2 .
 
-  ex:collections-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+  customendpoints:collections-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
     rdfs:label "Collections Object" ;
     prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}" ;
-    prez:relevantShapes ex:shape-R0-HL2 .
+    prez:relevantShapes customendpoints:shape-R0-HL2 .
 
-  ex:items-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
+  customendpoints:items-listing a prez:DynamicEndpoint, prez:ListingEndpoint ;
     rdfs:label "Items Listing" ;
     prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items" ;
-    prez:relevantShapes ex:shape-R0-HL3 .
+    prez:relevantShapes customendpoints:shape-R0-HL3 .
 
-  ex:items-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
+  customendpoints:items-object a prez:DynamicEndpoint, prez:ObjectEndpoint ;
     rdfs:label "Items Object" ;
     prez:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items/{itemId}" ;
-    prez:relevantShapes ex:shape-R0-HL3 .
+    prez:relevantShapes customendpoints:shape-R0-HL3 .
 
-    ex:shape-R0-HL1 a sh:NodeShape ;
+    customendpoints:shape-R0-HL1 a sh:NodeShape ;
     sh:targetClass dcat:Catalog , sdo:DataCatalog ;
     prez:hierarchyLevel 1 ;
     sh:property [
@@ -50,7 +50,7 @@
       sh:class schema:Dataset
     ] .
 
-  ex:shape-R0-HL2 a sh:NodeShape ;
+  customendpoints:shape-R0-HL2 a sh:NodeShape ;
     sh:targetClass schema:Dataset ;
     prez:hierarchyLevel 2 ;
     sh:property [
@@ -58,7 +58,7 @@
       sh:or ( [ sh:class dcat:Catalog ] [sh:class sdo:DataCatalog] )
     ] .
 
-  ex:shape-R0-HL3 a sh:NodeShape ;
+  customendpoints:shape-R0-HL3 a sh:NodeShape ;
     sh:targetClass abis:BiodiversityRecord ;
     prez:hierarchyLevel 3 ;
     sh:property [
@@ -70,24 +70,24 @@
     ] .
 
   ogc:feature a prez:OGCFeaturesEndpoint, prez:ObjectEndpoint ;
-    prez:relevantShapes ex:Feature .
+    prez:relevantShapes customendpoints:Feature .
 
   ogc:feature-collection a prez:OGCFeaturesEndpoint, prez:ObjectEndpoint ;
-    prez:relevantShapes ex:FeatureCollections .
+    prez:relevantShapes customendpoints:FeatureCollections .
 
   ogc:feature-collections a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes ex:FeatureCollections .
+    prez:relevantShapes customendpoints:FeatureCollections .
 
   ogc:features a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes ex:Feature .
+    prez:relevantShapes customendpoints:Feature .
 
   ogc:queryables-global a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes ex:QueryablesGlobal .
+    prez:relevantShapes customendpoints:QueryablesGlobal .
 
   ogc:queryables-local a prez:ListingEndpoint, prez:OGCFeaturesEndpoint ;
-    prez:relevantShapes ex:QueryablesLocal .
+    prez:relevantShapes customendpoints:QueryablesLocal .
 
-  ex:Feature a sh:NodeShape ;
+  customendpoints:Feature a sh:NodeShape ;
     sh:targetClass geo:Feature ;
     prez:hierarchyLevel 2 ;
     sh:property [
@@ -98,7 +98,7 @@
       sh:class schema:Dataset
     ] .
 
-  ex:FeatureCollections a sh:NodeShape ;
+  customendpoints:FeatureCollections a sh:NodeShape ;
     sh:targetClass geo:FeatureCollection ;
     prez:hierarchyLevel 1 ;
     sh:property [
@@ -106,14 +106,14 @@
       sh:class schema:Dataset
     ] .
 
-  ex:Object a sh:NodeShape ;
+  customendpoints:Object a sh:NodeShape ;
     prez:hierarchyLevel 1 .
 
-  ex:QueryablesGlobal a sh:NodeShape ;
+  customendpoints:QueryablesGlobal a sh:NodeShape ;
     sh:targetClass geo:Feature ;
     prez:hierarchyLevel 1 .
 
-  ex:QueryablesLocal a sh:NodeShape ;
+  customendpoints:QueryablesLocal a sh:NodeShape ;
     sh:targetClass geo:Feature ;
     prez:hierarchyLevel 2 .
 
