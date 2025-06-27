@@ -1,6 +1,9 @@
+@prefix ont: <https://prez.dev/ont/> .
+@prefix templatequeries: <https://prez/template-queries/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 <https://prez/template-queries> {
-  _:genid-838ab4f83f5c430891fcb52e38aa64fa30518-node2711 a <https://prez.dev/ont/TemplateQuery> ;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> """PREFIX dcterms: <http://purl.org/dc/terms/>
+  templatequeries:custom1 a ont:TemplateQuery ;
+    rdf:value """PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX schema: <https://schema.org/>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -149,10 +152,10 @@ WHERE {
         }
     }
 }""" ;
-    <https://prez.dev/ont/forEndpoint> "http://www.opengis.net/ogcapi-features-1/1.0/feature" .
+    ont:forEndpoint "http://www.opengis.net/ogcapi-features-1/1.0/feature" .
 
-  _:bn a <https://prez.dev/ont/TemplateQuery> ;
-    <http://www.w3.org/1999/02/22-rdf-syntax-ns#value> """PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+  templatequeries:custom2 a ont:TemplateQuery ;
+    rdf:value """PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX sosa: <http://www.w3.org/ns/sosa/>
 CONSTRUCT {
@@ -164,8 +167,6 @@ CONSTRUCT {
     ?oco2 ?ocp4 ?oco3 .
 }
 FROM <http://www.ontotext.com/explicit>
-#FROM <http://www.ontotext.com/explain>
-#FROM <http://www.ontotext.com/measure>
 WHERE {
     VALUES ?focusNode { UNDEF }
     ?focusNode a geo:Feature .
@@ -188,5 +189,5 @@ WHERE {
 
     }
 }""" ;
-    <https://prez.dev/ont/forEndpoint> "http://www.opengis.net/ogcapi-features-1/1.0/feature" .
+    ont:forEndpoint "http://www.opengis.net/ogcapi-features-1/1.0/feature" .
 }
