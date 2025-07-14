@@ -68,4 +68,10 @@
   _:node00004 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdrpr" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/bdr-pr/> .
 
+  _:node00005 <http://purl.org/vocab/vann/preferredNamespacePrefix> "abis" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/abis/> .
+
+  _:node00006 <http://purl.org/vocab/vann/preferredNamespacePrefix> "olis" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://olis.dev/> .
+
 }
