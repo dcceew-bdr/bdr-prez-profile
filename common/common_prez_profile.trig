@@ -14,8 +14,72 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix prezprofiles: <https://prez/profiles/> .
+@prefix abis: <https://linked.data.gov.au/def/abis/> .
 
 <https://prez/profiles> {
+
+  prezprofiles:BDR-item
+    a prof:Profile, prez:ObjectProfile, sh:NodeShape ;
+    dcterms:title "BDR Standard Object Profile" ;
+    dcterms:description "A profile for individual BDR Prez API items" ;
+    dcterms:identifier "bdr-item"^^xsd:token ;
+    altr-ext:hasResourceFormat
+        "application/ld+json",
+        "application/anot+ld+json",
+        "application/rdf+xml",
+        "text/anot+turtle",
+        "text/turtle",
+        "application/n-triples" ;
+    altr-ext:hasDefaultResourceFormat "text/turtle" ;
+    sh:property
+        [
+            sh:path
+                [
+                    sh:union (
+                                 [ shext:bNodeDepth "2" ]
+                                 shext:allPredicateValues
+                             )
+                ]
+        ],
+        [
+            sh:maxCount 0 ;
+            sh:path dcterms:hasPart , schema:hasPart , rdfs:member , skos:member ;
+        ] ;
+    altr-ext:constrainsClass
+        schema:Dataset,
+        schema:DataCatalog,
+        abis:BiodiversityRecord,
+        skos:ConceptScheme,
+        skos:Collection,
+        skos:Concept,
+        rdf:Resource,
+        prof:Profile ;
+
+  prezprofiles:custom-mem a prof:Profile , prez:ListingProfile ;
+    dcterms:description "A very basic data model that lists the members of container objects only, i.e. not their other properties. Has default format of text/turtle to avoid unintended annotations." ;
+    dcterms:identifier "custom-mem"^^xsd:token ;
+    dcterms:title "Members" ;
+    altr-ext:constrainsClass geo:FeatureCollection ,
+                             dcat:Dataset ,
+                             schema:Dataset,
+                             dcat:Catalog ,
+                             schema:DataCatalog,
+                             skos:ConceptScheme ,
+                             skos:Collection ,
+                             prez:CQLFilterResult ,
+                             prez:QueryablesList ,
+                             prof:Profile ;
+    altr-ext:hasDefaultResourceFormat "text/turtle" ;
+    altr-ext:hasResourceFormat
+        "application/ld+json" ,
+        "application/anot+ld+json" ,
+        "application/rdf+xml" ,
+        "text/anot+turtle" ,
+        "text/turtle" ;
+    sh:property [
+        sh:path rdf:type ;
+        ] ;
+
     prezprofiles:BDRHumanFeatureProfile a
             prof:Profile,
             sh:NodeShape,
