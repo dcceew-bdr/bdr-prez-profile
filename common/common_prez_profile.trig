@@ -54,6 +54,7 @@
         skos:Concept,
         rdf:Resource,
         prof:Profile ;
+  .
 
   prezprofiles:custom-mem a prof:Profile , prez:ListingProfile ;
     dcterms:description "A very basic data model that lists the members of container objects only, i.e. not their other properties. Has default format of text/turtle to avoid unintended annotations." ;
@@ -79,7 +80,7 @@
     sh:property [
         sh:path rdf:type ;
         ] ;
-
+  .
     prezprofiles:BDRHumanFeatureProfile a
             prof:Profile,
             sh:NodeShape,
