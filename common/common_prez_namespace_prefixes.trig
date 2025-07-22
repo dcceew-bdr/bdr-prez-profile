@@ -58,22 +58,34 @@
   _:node29609 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-ds" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:node00003 <http://purl.org/vocab/vann/preferredNamespacePrefix> "sm" ;
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "sm" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/bdr-pr/sm/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:node00004 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdrpr" ;
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdrpr" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/bdr-pr/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:node00005 <http://purl.org/vocab/vann/preferredNamespacePrefix> "abis" ;
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "abis" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/abis/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:node00006 <http://purl.org/vocab/vann/preferredNamespacePrefix> "olis" ;
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "olis" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://olis.dev/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:node00007 <http://purl.org/vocab/vann/preferredNamespacePrefix> "dwc" ;
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "dwc" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "http://rs.tdwg.org/dwc/terms/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:node00008 <http://purl.org/vocab/vann/preferredNamespacePrefix> "dwciri" ;
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "dwciri" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "http://rs.tdwg.org/dwc/iri/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "void" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://rdfs.org/ns/void#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "time" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.w3.org/2006/time#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "prov" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.w3.org/ns/prov#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+  
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "geo" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.opengis.net/ont/geosparql#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
 }

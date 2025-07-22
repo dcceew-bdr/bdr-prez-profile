@@ -15,6 +15,8 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix prezprofiles: <https://prez/profiles/> .
 @prefix abis: <https://linked.data.gov.au/def/abis/> .
+@prefix dwciri: <http://rs.tdwg.org/dwc/iri/> .
+@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
 
 <https://prez/profiles> {
 
@@ -109,6 +111,9 @@
                                      ( geo:hasGeometry geo:asWKT )
                                      ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
+                                     ( dwciri:toTaxon dwc:acceptedNameUsageID )
+                                     ( dwciri:toTaxon dwc:originalNameUsageID )
+                                     ( dwciri:toTaxon dwc:parentNameUsageID )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:usedProcedure )
@@ -167,6 +172,9 @@
                                      ( schema:temporal shext:allPredicateValues )
                                      ( tern:hasAttribute tern:attribute )
                                      ( tern:hasAttribute tern:hasSimpleValue )
+                                     ( dwciri:toTaxon dwc:acceptedNameUsageID )
+                                     ( dwciri:toTaxon dwc:originalNameUsageID )
+                                     ( dwciri:toTaxon dwc:parentNameUsageID )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:usedProcedure )
@@ -221,6 +229,9 @@
                                      ( geo:hasGeometry geo:asWKT )
                                      ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
+                                     ( dwciri:toTaxon dwc:acceptedNameUsageID )
+                                     ( dwciri:toTaxon dwc:originalNameUsageID )
+                                     ( dwciri:toTaxon dwc:parentNameUsageID )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
@@ -274,6 +285,9 @@
                                      ( schema:temporal shext:allPredicateValues )
                                      ( tern:hasAttribute tern:attribute )
                                      ( tern:hasAttribute tern:hasSimpleValue )
+                                     ( dwciri:toTaxon dwc:acceptedNameUsageID )
+                                     ( dwciri:toTaxon dwc:originalNameUsageID )
+                                     ( dwciri:toTaxon dwc:parentNameUsageID )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
@@ -294,22 +308,23 @@
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] tern:hasAttribute tern:hasSimpleValue )
                                      ( [ sh:inversePath rdfs:member ] rdf:type )
                                      ( [ sh:inversePath rdfs:member ] schema:isPartOf )
-                                     ( [sh:inversePath schema:about] rdfs:comment )
-                                     ( [sh:inversePath schema:about] schema:identifier )
-                                     ( [sh:inversePath schema:about] schema:isPartOf )
+                                     ( [ sh:inversePath schema:about ] rdf:type )
+                                     ( [ sh:inversePath schema:about ] rdfs:comment )
+                                     ( [ sh:inversePath schema:about ] schema:identifier )
+                                     ( [ sh:inversePath schema:about ] schema:isPartOf )
                                  )
                     ]
             ] ;
     .
 
-    prezprofiles:MinimalFeatureListingProfile a
+    prezprofiles:MinimalGeoFeatureListingProfile a
             prof:Profile,
             sh:NodeShape,
             prez:ListingProfile,
             prez:ObjectProfile ;
-        dcterms:description "Fast and minimal profile for listing Features." ;
-        dcterms:identifier "feature-listing-minimal"^^xsd:token ;
-        dcterms:title "Feature Listing Minimal Profile" ;
+        dcterms:description "Fast and minimal profile for listing Geospatial Features, compatible with GeoJSON." ;
+        dcterms:identifier "geo-feature-listing-minimal"^^xsd:token ;
+        dcterms:title "Geospatial Feature Listing Minimal Profile" ;
         altr-ext:constrainsClass
             geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
         altr-ext:hasDefaultResourceFormat "application/geo+json" ;
@@ -333,8 +348,175 @@
                                     ( geo:hasDefaultGeometry geo:asWKT )
                                     ( [ sh:inversePath rdfs:member ] rdf:type )
                                     ( [ sh:inversePath rdfs:member ] schema:isPartOf )
-                                    ( [sh:inversePath schema:about] schema:identifier )
-                                    ( [sh:inversePath schema:about] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] rdf:type )
+                                    ( [ sh:inversePath schema:about ] schema:identifier )
+                                    ( [ sh:inversePath schema:about ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] void:inDataset )
+                                 )
+                    ]
+            ] ;
+    .
+
+    prezprofiles:MinimalGeoFeatureListingHumanProfile a
+            prof:Profile,
+            sh:NodeShape,
+            prez:ListingProfile,
+            prez:ObjectProfile ;
+        dcterms:description "Fast and minimal profile for listing Geospatial Features, compatible with GeoJSON." ;
+        dcterms:identifier "geo-feature-listing-minimal-human"^^xsd:token ;
+        dcterms:title "Geospatial Feature Listing Minimal Profile (Human Readable)" ;
+        altr-ext:constrainsClass
+            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
+        altr-ext:hasDefaultResourceFormat "application/geo+json" ;
+        altr-ext:hasResourceFormat
+            "application/geo+json",
+            "application/anot+ld+json",
+            "application/ld+json",
+            "application/rdf+xml",
+            "text/anot+turtle",
+            "text/turtle" ;
+        sh:property
+            [
+                sh:path
+                    [
+                        sh:union (
+                                    rdf:type
+                                    schema:identifier
+                                    schema:isPartOf
+                                    void:inDataset
+                                    ( geo:hasGeometry geo:asWKT )
+                                    ( geo:hasDefaultGeometry geo:asWKT )
+                                    ( [ sh:inversePath rdfs:member ] rdf:type )
+                                    ( [ sh:inversePath rdfs:member ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] rdf:type )
+                                    ( [ sh:inversePath schema:about ] schema:identifier )
+                                    ( [ sh:inversePath schema:about ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] void:inDataset )
+                                 )
+                    ]
+            ] ;
+    .
+
+    prezprofiles:MinimalGeoOccurrenceListingProfile a
+            prof:Profile,
+            sh:NodeShape,
+            prez:ListingProfile,
+            prez:ObjectProfile ;
+        dcterms:description "Fast and minimal profile for listing Occurrence Features, compatible with GeoJSON." ;
+        dcterms:identifier "geo-occurrence-listing-minimal"^^xsd:token ;
+        dcterms:title "Geo Occurrence Listing Minimal Profile" ;
+        altr-ext:constrainsClass
+            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
+        altr-ext:hasDefaultResourceFormat "application/geo+json" ;
+        altr-ext:hasResourceFormat
+            "application/geo+json",
+            "application/anot+ld+json",
+            "application/ld+json",
+            "application/rdf+xml",
+            "text/anot+turtle",
+            "text/turtle" ;
+        sh:property
+            [
+                sh:path
+                    [
+                        sh:union (
+                                    rdf:type
+                                    schema:identifier
+                                    schema:isPartOf
+                                    void:inDataset
+                                    ( schema:temporal shext:allPredicateValues )
+                                    ( dwciri:toTaxon dwc:acceptedNameUsageID )
+                                    ( dwciri:toTaxon dwc:originalNameUsageID )
+                                    ( dwciri:toTaxon dwc:parentNameUsageID )
+                                    ( geo:hasGeometry geo:asWKT )
+                                    ( geo:hasDefaultGeometry geo:asWKT )
+                                    ( schema:spatial shext:allPredicateValues )
+                                    ( [ sh:inversePath rdfs:member ] rdf:type )
+                                    ( [ sh:inversePath rdfs:member ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] rdf:type )
+                                    ( [ sh:inversePath schema:about ] schema:identifier )
+                                    ( [ sh:inversePath schema:about ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] void:inDataset )
+                                 )
+                    ]
+            ] ;
+    .
+
+    prezprofiles:MinimalGeoOccurrenceListingHumanProfile a
+            prof:Profile,
+            sh:NodeShape,
+            prez:ListingProfile,
+            prez:ObjectProfile ;
+        dcterms:description "Fast and minimal profile for listing Occurrence Features, compatible with GeoJSON." ;
+        dcterms:identifier "geo-occurrence-listing-minimal-human"^^xsd:token ;
+        dcterms:title "Geo Occurrence Listing Minimal Profile (Human Readable)" ;
+        altr-ext:constrainsClass
+            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
+        altr-ext:hasDefaultResourceFormat "application/geo+json" ;
+        altr-ext:hasResourceFormat
+            "application/geo+json",
+            "application/anot+ld+json",
+            "application/ld+json",
+            "application/rdf+xml",
+            "text/anot+turtle",
+            "text/turtle" ;
+        sh:property
+            [
+                sh:path
+                    [
+                        sh:union (
+                                    rdf:type
+                                    schema:identifier
+                                    schema:isPartOf
+                                    void:inDataset
+                                    ( schema:temporal shext:allPredicateValues )
+                                    ( dwciri:toTaxon dwc:acceptedNameUsageID )
+                                    ( dwciri:toTaxon dwc:originalNameUsageID )
+                                    ( dwciri:toTaxon dwc:parentNameUsageID )
+                                    ( geo:hasGeometry geo:asWKT )
+                                    ( geo:hasDefaultGeometry geo:asWKT )
+                                    ( schema:spatial shext:allPredicateValues )
+                                    ( [ sh:inversePath rdfs:member ] rdf:type )
+                                    ( [ sh:inversePath rdfs:member ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] rdf:type )
+                                    ( [ sh:inversePath schema:about ] schema:identifier )
+                                    ( [ sh:inversePath schema:about ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] void:inDataset )
+                                 )
+                    ]
+            ] ;
+    .
+
+    prezprofiles:MinimalFeatureListingProfile a
+            prof:Profile,
+            sh:NodeShape,
+            prez:ListingProfile,
+            prez:ObjectProfile ;
+        dcterms:description "Fast and minimal profile for listing Occurrences." ;
+        dcterms:identifier "feature-listing-minimal"^^xsd:token ;
+        dcterms:title "Feature Listing Minimal Profile" ;
+        altr-ext:constrainsClass
+            geo:Feature, rdfs:Resource , prez:CQLFilterResult , prez:SearchResult ;
+        altr-ext:hasDefaultResourceFormat "text/turtle" ;
+        altr-ext:hasResourceFormat
+            "application/anot+ld+json",
+            "application/ld+json",
+            "application/rdf+xml",
+            "text/anot+turtle",
+            "text/turtle" ;
+        sh:property
+            [
+                sh:path
+                    [
+                        sh:union (
+                                    rdf:type
+                                    schema:identifier
+                                    schema:isPartOf
+                                    void:inDataset
+                                    ( [ sh:inversePath schema:about ] rdf:type )
+                                    ( [ sh:inversePath schema:about ] schema:identifier )
+                                    ( [ sh:inversePath schema:about ] schema:isPartOf )
+                                    ( [ sh:inversePath schema:about ] void:inDataset )
                                  )
                     ]
             ] ;
