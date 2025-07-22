@@ -11,30 +11,31 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix prezqueryables: <https://prez/queryables/> .
+@prefix nsl: <https://linked.data.gov.au/def/nsl/> .
 
 <https://prez/queryables> {
 
   prezqueryables:Submission a cql:Queryable ;
     a sh:PropertyShape;
-    <http://purl.org/dc/terms/identifier> "nrm-submission";
-    sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
+    dcterms:identifier "nrm-submission";
+    sh:datatype xsd:string;
     sh:description "The NRM Submission the Feature was submitted as part of";
     sh:name "NRM Submission";
     sh:path ( void:inDataset schema:identifier ) .
 
   prezqueryables:SpatialQueryable a cql:Queryable ;
     a sh:PropertyShape;
-    <http://purl.org/dc/terms/identifier> "spatial";
-    sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
+    dcterms:identifier "spatial";
+    sh:datatype xsd:string;
     sh:description "schema:spatial/geo:asWKT";
     sh:name "spatial";
     sh:path ( schema:spatial geo:asWKT ) .
 
-  prezqueryables:TemporalFilterShape a cql:Queryable ;
+  prezqueryables:XSDDateQueryable a cql:Queryable ;
     a sh:PropertyShape;
-    <http://purl.org/dc/terms/identifier> "temporal";
-    sh:datatype <http://www.w3.org/2001/XMLSchema#string>;
-    sh:description "<https://schema.org/temporal>/<http://www.w3.org/2006/time#inXSDDate>";
+    dcterms:identifier "xsd-date";
+    sh:datatype xsd:string;
+    sh:description "<https://schema.org/temporal>/<http://www.w3.org/2006/time#inXSDDate> only works for occurrrences where the temporal component is a date, not a date-time";
     sh:name "schema temporal / time in date" ;
     sh:path ( schema:temporal time:inXSDDate ) .
 
@@ -49,10 +50,28 @@
 
   prezqueryables:TaxonNameQueryable a cql:Queryable ;
     a sh:PropertyShape ;
-    sh:path ( dwciri:toTaxon [ sh:alternativePath ( dwc:acceptedNameUsageID dwc:parentNameUsageID ) ] prov:generated rdfs:label ) ;
+    sh:path ( dwciri:toTaxon [ sh:alternativePath ( dwc:acceptedNameUsageID dwc:parentNameUsageID ) ] nsl:usageOf rdfs:label ) ;
     sh:name "NSL TaxonName" ;
     dcterms:identifier "nsl-name" ;
     sh:description "Filtering based on (exact match) NSL TaxonName string" ;
+    sh:datatype xsd:string ;
+  .
+
+  prezqueryables:SubmissionQueryable a cql:Queryable ;
+    a sh:PropertyShape ;
+    sh:path void:inDataset ;
+    sh:name "BDR Submission" ;
+    dcterms:identifier "submission" ;
+    sh:description "Filtering entries within a BDR Submission (submission is a URI)" ;
+    sh:datatype xsd:string ;
+  .
+
+  prezqueryables:DatasetQueryable a cql:Queryable ;
+    a sh:PropertyShape ;
+    sh:path schema:isPartOf ;
+    sh:name "BDR Dataset" ;
+    dcterms:identifier "dataset" ;
+    sh:description "Filtering entries within a BDR Dataset (dataset is a URI)" ;
     sh:datatype xsd:string ;
   .
 
