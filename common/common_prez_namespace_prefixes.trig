@@ -13,9 +13,6 @@
       "bdr-datatypes" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/datatypes/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-70DC83E2EE4C6371598620F511CC82E2 <http://purl.org/vocab/vann/preferredNamespacePrefix>
-      "bdr-ds" .
-
   _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-8E80F4F475DE40AB9C0C0AFE15BAE6BE <http://purl.org/vocab/vann/preferredNamespacePrefix>
       "ibra7-codes" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "http://linked.data.gov.au/dataset/bioregion/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
@@ -27,10 +24,6 @@
   _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-BB4B3F9DE23DD0DD5F262FFC0DFE31B3 <http://purl.org/vocab/vann/preferredNamespacePrefix>
       "emsa-cv" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/nrm/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
-
-  _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-D4EAE82676063BF66970DC7E0F7E3D22 <http://purl.org/vocab/vann/preferredNamespacePrefix>
-      "bdr-cat" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/catalogs/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:genid-96296dacecbd488abbdaee9f8aaac5c1663945-D8A7BB34B5D48429F4F478C665982173 <http://purl.org/vocab/vann/preferredNamespacePrefix>
       "abis-vocab-themes" ;
@@ -45,33 +38,42 @@
     <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/orgs/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node10416 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-occ" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/occurrences/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/occurrences/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:node10419 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-cat" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/catalogues/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node00001 <http://purl.org/vocab/vann/preferredNamespacePrefix> "fc" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/feature-collection/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/feature-collection/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node00002 <http://purl.org/vocab/vann/preferredNamespacePrefix> "oc" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/occurrence-collection/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/occurrence-collection/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node10417 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-rec" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/records/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/records/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node10418 <http://purl.org/vocab/vann/preferredNamespacePrefix> "tern" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://w3id.org/tern/ontologies/tern/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/tern/ontologies/tern/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node29609 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr-ds" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/dataset/bdr/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/dataset/bdr/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
-  _:node00003 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdr" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/bdr/> .
+  _:node00003 <http://purl.org/vocab/vann/preferredNamespacePrefix> "sm" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/bdr-pr/sm/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node00004 <http://purl.org/vocab/vann/preferredNamespacePrefix> "bdrpr" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/bdr-pr/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/bdr-pr/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node00005 <http://purl.org/vocab/vann/preferredNamespacePrefix> "abis" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://linked.data.gov.au/def/abis/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://linked.data.gov.au/def/abis/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
   _:node00006 <http://purl.org/vocab/vann/preferredNamespacePrefix> "olis" ;
-    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://olis.dev/> .
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "https://olis.dev/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:node00007 <http://purl.org/vocab/vann/preferredNamespacePrefix> "dwc" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://rs.tdwg.org/dwc/terms/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+  _:node00008 <http://purl.org/vocab/vann/preferredNamespacePrefix> "dwciri" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://rs.tdwg.org/dwc/iri/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
 }
