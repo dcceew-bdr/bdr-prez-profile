@@ -10,11 +10,13 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX sosa: <http://www.w3.org/ns/sosa/>
 PREFIX tern: <https://w3id.org/tern/ontologies/tern/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dwciri: <http://rs.tdwg.org/dwc/iri/>
 CONSTRUCT {
     ?focusNode ?fp1 ?fo .
     ?fs ?fp2 ?focusNode .
     ?fo ?fo_bnp ?fo_bno .
     ?fo_bno ?fo_bn2p ?fo_bn2o .
+    ?ftt ?fttp ?ftto .
     ?ft ?ftp ?fto .
     ?fto ?fto_p ?fto_o .
     ?fsp ?fspp ?fspo .
@@ -51,7 +53,7 @@ WHERE {
     BIND(COALESCE(?_res, false) as ?res)
     {
         ?subjects ?fp1 ?fo .
-        FILTER(?fo != ?ob && ?fp1 != tern:hasAttribute && ?fp1 != schema:temporal && ?fp1 != schema:spatial && ?fp1 != geo:hasGeometry && ?fp1 != geo:hasDefaultGeometry)
+        FILTER(?fo != ?ob && ?fp1 != tern:hasAttribute && ?fp1 != dwciri:toTaxon && ?fp1 != schema:temporal && ?fp1 != schema:spatial && ?fp1 != geo:hasGeometry && ?fp1 != geo:hasDefaultGeometry)
     } UNION {
         ?subjects tern:hasAttribute ?fa .
         ?fa ?fap ?fao .
@@ -59,6 +61,11 @@ WHERE {
         ?fa_val ?fa_valp ?fa_valo .
         BIND (tern:hasAttribute as ?fp1)
         BIND (?fa as ?fo)
+    } UNION {
+        ?focusNode dwciri:toTaxon ?ftt .
+        ?ftt ?fttp ?ftto .
+        BIND (dwciri:toTaxon as ?fp1)
+        BIND (?ftt as ?fo)
     } UNION {
         ?subjects schema:temporal ?ft .
         ?ft ?ftp ?fto .
