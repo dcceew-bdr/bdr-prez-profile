@@ -88,4 +88,8 @@
   [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "geo" ;
     <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.opengis.net/ont/geosparql#"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
 
+  [] <http://purl.org/vocab/vann/preferredNamespacePrefix> "sosa" ;
+    <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.w3.org/ns/sosa/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+
 }
