@@ -1,0 +1,179 @@
+### bbox + time
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "t_during",
+      "args": [
+        { "interval": [ { "property": "ex:starts_at" }, { "property": "ex:ends_at" } ] },
+        { "interval": [ "2017-06-10T07:30:00Z", "2017-06-11T10:30:00Z" ] }
+      ]
+    }
+    &bbox=4.0,4.0,6.0,6.0
+Accept: application/sparql-query
+
+### bbox aus polygon - merit beta
+GET {{baseUrl}}/catalogs/bdr-cat:merit-datasets/collections/bdr-ds:b0e756c6-22b5-4ff7-b104-64ff4305670a/features/collections/fc:4184ecd8-57f8-48fe-8745-a473616bf3fa/items
+    ?bbox=148.76,-35.93,149.4,-35.12
+Accept: application/sparql-query
+
+### equals
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "=",
+      "args": [
+        {
+          "property": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "http://example.org/Slide"
+      ]
+    }
+Accept: application/sparql-query
+
+### in
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "in",
+      "args": [
+        { "property": "ex:cityName" },
+        [ "Toronto", "Frankfurt", "Tokyo", "New York" ]
+      ]
+    }
+Accept: application/sparql-query
+
+### or
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "or",
+      "args": [
+        {
+          "op": "=",
+          "args": [
+            { "property": "eo:cloud_cover" },
+            0.1
+          ]
+        },
+        {
+          "op": "=",
+          "args": [
+            { "property": "eo:cloud_cover" },
+            0.2
+          ]
+        }
+      ]
+    }
+Accept: application/sparql-query
+
+### nested or
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "or",
+      "args": [
+        {
+          "op": "=",
+          "args": [
+            { "property": "eo:cloud_cover" },
+            0.1
+          ]
+        },
+        {
+          "op": "and",
+          "args": [
+            {
+              "op": "=",
+              "args": [
+                { "property": "eo:cloud_cover" },
+                0.2
+              ]
+            },
+            {
+              "op": ">=",
+              "args": [
+                { "property": "eo:sun_elevation" },
+                30
+              ]
+            }
+          ]
+        }
+      ]
+    }
+Accept: application/sparql-query
+
+### nest nest
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "or",
+      "args": [
+        {
+          "op": "=",
+          "args": [
+            { "property": "eo:cloud_cover" },
+            0.1
+          ]
+        },
+        {
+          "op": "and",
+          "args": [
+            {
+              "op": "=",
+              "args": [
+                { "property": "eo:cloud_cover" },
+                0.2
+              ]
+            },
+            {
+              "op": "or",
+              "args": [
+                {
+                  "op": ">=",
+                  "args": [
+                    { "property": "eo:sun_elevation" },
+                    30
+                  ]
+                },
+                {
+                  "op": "<=",
+                  "args": [
+                    { "property": "eo:sun_elevation" },
+                    10
+                  ]
+                },
+                {
+                  "op": "in",
+                  "args": [
+                    { "property": "eo:sun_elevation" },
+                    ["one","two","three"]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+Accept: application/sparql-query
+
+### time func
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "t_before",
+      "args": [
+        { "property": "ex:built" },
+        { "date": "2015-01-01" }
+      ]
+    }
+Accept: application/sparql-query
+
+### t during
+GET {{baseUrl}}/cql
+    ?filter={
+      "op": "t_during",
+      "args": [
+        { "interval": [ { "property": "ex:starts_at" }, { "property": "ex:ends_at" } ] },
+        { "interval": [ "2017-06-10T07:30:00Z", "2017-06-11T10:30:00Z" ] }
+      ]
+    }
+Accept: application/sparql-query
+
+### bbox
+GET {{baseUrl}}/catalogs
+    ?bbox=4.0,4.0,6.0,6.0
+Accept: application/sparql-query
