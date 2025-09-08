@@ -1,4 +1,3 @@
-@prefix sdo: <https://schema.org/> .
 @prefix ont: <https://prez.dev/ont/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -12,34 +11,34 @@
 
 <https://prez/custom-endpoints> {
 
-  customendpoints:catalogs-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
-    rdfs:label "Catalogs Listing" ;
-    ont:apiPath "/catalogs" ;
+  customendpoints:catalogues-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
+    rdfs:label "catalogues Listing" ;
+    ont:apiPath "/catalogues" ;
     ont:relevantShapes customendpoints:shape-R0-HL1 .
 
-  customendpoints:catalogs-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
-    rdfs:label "Catalogs Object" ;
-    ont:apiPath "/catalogs/{catalogId}" ;
+  customendpoints:catalogues-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
+    rdfs:label "catalogues Object" ;
+    ont:apiPath "/catalogues/{catalogId}" ;
     ont:relevantShapes customendpoints:shape-R0-HL1 .
 
   customendpoints:collections-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
     rdfs:label "Collections Listing" ;
-    ont:apiPath "/catalogs/{catalogId}/collections" ;
+    ont:apiPath "/catalogues/{catalogId}/collections" ;
     ont:relevantShapes customendpoints:shape-R0-HL2 .
 
   customendpoints:collections-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
     rdfs:label "Collections Object" ;
-    ont:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}" ;
+    ont:apiPath "/catalogues/{catalogId}/collections/{recordsCollectionId}" ;
     ont:relevantShapes customendpoints:shape-R0-HL2 .
 
   customendpoints:items-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
     rdfs:label "Items Listing" ;
-    ont:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items" ;
+    ont:apiPath "/catalogues/{catalogId}/collections/{recordsCollectionId}/items" ;
     ont:relevantShapes customendpoints:shape-R0-HL3 .
 
   customendpoints:items-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
     rdfs:label "Items Object" ;
-    ont:apiPath "/catalogs/{catalogId}/collections/{recordsCollectionId}/items/{itemId}" ;
+    ont:apiPath "/catalogues/{catalogId}/collections/{recordsCollectionId}/items/{itemId}" ;
     ont:relevantShapes customendpoints:shape-R0-HL3 .
 
     customendpoints:shape-R0-HL1 a sh:NodeShape ;
@@ -47,7 +46,7 @@
     ont:hierarchyLevel 1 ;
     sh:property [
       sh:path [ sh:alternativePath ( [ sh:inversePath dcterms:isPartOf ] dcterms:hasPart [ sh:inversePath sdo:isPartOf ] sdo:hasPart )] ;
-      sh:class schema:Dataset
+      sh:or ( [ sh:class schema:DataCatalog ] [ sh:class dcat:Catalog ] [ sh:class skos:Collection ] [ sh:class schema:Dataset ] [ sh:class schema:Resource ] [ sh:class skos:ConceptScheme ] )
     ] .
 
   customendpoints:shape-R0-HL2 a sh:NodeShape ;

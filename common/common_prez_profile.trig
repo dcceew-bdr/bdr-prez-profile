@@ -111,9 +111,12 @@
                                      ( geo:hasGeometry geo:asWKT )
                                      ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
+                                     ( dwciri:toTaxon dwc:scientificNameID )
                                      ( dwciri:toTaxon dwc:acceptedNameUsageID )
                                      ( dwciri:toTaxon dwc:originalNameUsageID )
                                      ( dwciri:toTaxon dwc:parentNameUsageID )
+                                     ( [ sh:inversePath schema:hasPart ] rdf:type )
+                                     ( [ sh:inversePath schema:hasPart ] schema:name )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:usedProcedure )
@@ -172,9 +175,14 @@
                                      ( schema:temporal shext:allPredicateValues )
                                      ( tern:hasAttribute tern:attribute )
                                      ( tern:hasAttribute tern:hasSimpleValue )
+                                     ( dwciri:toTaxon dwc:scientificNameID )
                                      ( dwciri:toTaxon dwc:acceptedNameUsageID )
                                      ( dwciri:toTaxon dwc:originalNameUsageID )
                                      ( dwciri:toTaxon dwc:parentNameUsageID )
+                                     ( [ sh:inversePath schema:hasPart ] rdf:type )
+                                     ( [ sh:inversePath schema:hasPart ] schema:name )
+                                     ( [ sh:inversePath schema:hasPart ] tern:hasAttribute tern:attribute )
+                                     ( [ sh:inversePath schema:hasPart ] tern:hasAttribute tern:hasSimpleValue )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:observedProperty )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:usedProcedure )
@@ -229,9 +237,12 @@
                                      ( geo:hasGeometry geo:asWKT )
                                      ( geo:hasDefaultGeometry geo:asWKT )
                                      ( schema:temporal shext:allPredicateValues )
+                                     ( dwciri:toTaxon dwc:scientificNameID )
                                      ( dwciri:toTaxon dwc:acceptedNameUsageID )
                                      ( dwciri:toTaxon dwc:originalNameUsageID )
                                      ( dwciri:toTaxon dwc:parentNameUsageID )
+                                     ( [ sh:inversePath schema:hasPart ] rdf:type )
+                                     ( [ sh:inversePath schema:hasPart ] schema:name )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasResult shext:allPredicateValues )
@@ -288,9 +299,15 @@
                                      ( tern:hasAttribute tern:attribute )
                                      ( tern:hasAttribute tern:hasSimpleValue )
                                      ( tern:hasAttribute tern:hasValue shext:allPredicateValues )
+                                     ( dwciri:toTaxon dwc:scientificNameID )
                                      ( dwciri:toTaxon dwc:acceptedNameUsageID )
                                      ( dwciri:toTaxon dwc:originalNameUsageID )
                                      ( dwciri:toTaxon dwc:parentNameUsageID )
+                                     ( [ sh:inversePath schema:hasPart ] rdf:type )
+                                     ( [ sh:inversePath schema:hasPart ] schema:name )
+                                     ( [ sh:inversePath schema:hasPart ] tern:hasAttribute tern:attribute )
+                                     ( [ sh:inversePath schema:hasPart ] tern:hasAttribute tern:hasSimpleValue )
+                                     ( [ sh:inversePath schema:hasPart ] tern:hasAttribute tern:hasValue shext:allPredicateValues )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember rdf:type )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasSimpleResult )
                                      ( [ sh:inversePath sosa:hasFeatureOfInterest ] sosa:hasMember sosa:hasResult shext:allPredicateValues )
@@ -431,6 +448,7 @@
                                     schema:isPartOf
                                     void:inDataset
                                     ( schema:temporal shext:allPredicateValues )
+                                    ( dwciri:toTaxon dwc:scientificNameID )
                                     ( dwciri:toTaxon dwc:acceptedNameUsageID )
                                     ( dwciri:toTaxon dwc:originalNameUsageID )
                                     ( dwciri:toTaxon dwc:parentNameUsageID )
@@ -476,6 +494,7 @@
                                     schema:isPartOf
                                     void:inDataset
                                     ( schema:temporal shext:allPredicateValues )
+                                    ( dwciri:toTaxon dwc:scientificNameID )
                                     ( dwciri:toTaxon dwc:acceptedNameUsageID )
                                     ( dwciri:toTaxon dwc:originalNameUsageID )
                                     ( dwciri:toTaxon dwc:parentNameUsageID )
@@ -498,7 +517,7 @@
             sh:NodeShape,
             prez:ListingProfile,
             prez:ObjectProfile ;
-        dcterms:description "Fast and minimal profile for listing Occurrences." ;
+        dcterms:description "Fast and minimal profile for listing Biodiversity Records. Does not include geospatial properties, so cannot be used with GeoJSON media type." ;
         dcterms:identifier "feature-listing-minimal"^^xsd:token ;
         dcterms:title "Feature Listing Minimal Profile" ;
         altr-ext:constrainsClass

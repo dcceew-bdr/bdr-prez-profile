@@ -24,7 +24,7 @@ customendpoints:catalogues-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
 customendpoints:collections-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
     rdfs:label "Collections Listing" ;
     ont:apiPath "/catalogues/{catalogueId}/collections" ;
-    ont:relevantShapes customendpoints:shape-R0-HL2 .
+    ont:relevantShapes customendpoints:shape-R0-HL2-L .
 
 # customendpoints:subcatalogues-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
 #     rdfs:label "Subcatalogues Listing" ;
@@ -34,7 +34,7 @@ customendpoints:collections-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
 customendpoints:collections-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
     rdfs:label "Collections Object" ;
     ont:apiPath "/catalogues/{catalogueId}/collections/{recordsCollectionId}" ;
-    ont:relevantShapes customendpoints:shape-R0-HL2 .
+    ont:relevantShapes customendpoints:shape-R0-HL2-O .
 
 # customendpoints:subcatalogues-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
 #     rdfs:label "Subcatalogues Listing" ;
@@ -59,12 +59,25 @@ customendpoints:shape-R0-HL1 a sh:NodeShape ;
     ] ;
     ont:hierarchyLevel 1 .
 
-customendpoints:shape-R0-HL2 a sh:NodeShape ;
+customendpoints:shape-R0-HL2-L a sh:NodeShape ;
+    # For listings, include Catalogs in hierarchy level 2
     sh:targetClass skos:Collection,
         skos:ConceptScheme,
         dcat:Catalog,
         schema:Dataset ,
         schema:DataCatalog ,
+        schema:Resource ;
+    sh:property [
+      sh:path [ sh:alternativePath ( [ sh:inversePath dcterms:hasPart ] dcterms:isPartOf [ sh:inversePath schema:hasPart ] schema:isPartOf )] ;
+      sh:or ( [ sh:class dcat:Catalog ] [sh:class schema:DataCatalog] )
+    ] ;
+    ont:hierarchyLevel 2 .
+
+customendpoints:shape-R0-HL2-O a sh:NodeShape ;
+    # For objects, don't generate links to hierarchy level 2 for Catalogs
+    sh:targetClass skos:Collection,
+        skos:ConceptScheme,
+        schema:Dataset ,
         schema:Resource ;
     sh:property [
       sh:path [ sh:alternativePath ( [ sh:inversePath dcterms:hasPart ] dcterms:isPartOf [ sh:inversePath schema:hasPart ] schema:isPartOf )] ;

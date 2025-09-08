@@ -48,10 +48,19 @@
     sh:datatype xsd:string ;
   .
 
-  prezqueryables:TaxonNameQueryable a cql:Queryable ;
+  prezqueryables:TaxonNameIDQueryable a cql:Queryable ;
+    a sh:PropertyShape ;
+    sh:path ( dwciri:toTaxon [ dwc:scientificNameID ] ) ;
+    sh:name "NSL Scientific Name ID URI" ;
+    dcterms:identifier "nsl-name-id" ;
+    sh:description "For efficient filtering based on known (full) NSL Name Identifier URI" ;
+    sh:datatype xsd:string ;
+  .
+
+  prezqueryables:TaxonNameLiteralQueryable a cql:Queryable ;
     a sh:PropertyShape ;
     sh:path ( dwciri:toTaxon [ sh:alternativePath ( dwc:acceptedNameUsageID dwc:parentNameUsageID ) ] nsl:usageOf rdfs:label ) ;
-    sh:name "NSL TaxonName" ;
+    sh:name "NSL TaxonName literal" ;
     dcterms:identifier "nsl-name" ;
     sh:description "Filtering based on (exact match) NSL TaxonName string" ;
     sh:datatype xsd:string ;
