@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>/test/catalogue_endpoints.hurl</title>
+    <style>
+        body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h4:target {
+    color: #ff0288;
+}
+
+table {
+    display: block;
+    font-size: 15px;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+    border-collapse: collapse;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+th, td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ddd;
+}
+
+th {
+    padding: 6px 8px;
+    text-align: left;
+    background: #f5f5f5;
+}
+
+td {
+    padding: 6px 8px;
+    vertical-align: text-top;
+}
+
+.name {
+    width: 120px;
+    font-weight: bold;
+    background: #fbfafd;
+}
+
+.value {
+    width: 800px;
+    word-break: break-all
+}
+
+details {
+    margin-bottom: 20px;
+}
+
+summary {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #19191c;
+        color: #c2c2c2;
+    }
+
+    th, td {
+        border-color: #444;
+    }
+
+    th, table tr:nth-child(2n) {
+        background-color: #27272c;
+    }
+
+    table tr:nth-child(2n+1) {
+        background-color: #19191c;
+    }
+
+    .name {
+        background-color: #19191c;
+    }
+}
+
+        .report-nav {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.report-nav-links {
+    display: flex;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.report-nav a {
+    color: royalblue;
+    margin-right: 20px;
+}
+
+.report-nav a[aria-selected="true"] {
+    color: #ff0288;
+}
+
+.report-nav-summary > div {
+    display: flex;
+}
+
+.report-nav-summary .item-name {
+    min-width: 100px;
+    font-weight: bold;
+}
+
+.error {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-left: red 4px solid;
+}
+
+.error-desc {
+    background: #f5f5f5;
+}
+
+.error-desc pre {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    margin: 0.75rem;
+    padding: 0.8rem;
+    overflow-x: auto;
+}
+
+.error-desc pre code {
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+.success, .success a {
+    color: green;
+}
+
+.failure, .failure a {
+    color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+    .report-nav a {
+        color: #34a7ff;
+    }
+    
+    .success, .success a {
+        color: green;
+    }
+
+    .report-nav a[aria-selected="true"] {
+        color: #ff0288;
+    }
+
+    .error-desc {
+        background: #27272c;
+    }
+}
+
+    </style>
+<body>
+<div>
+    <div class="container">
+        <div class="report-nav">
+    <div class="report-nav-links">
+        <div><a href="../index.html">Report</a></div>
+        <div><a aria-selected="false" href="dfe535de-719c-44eb-9d6c-fe91285cc55a-source.html">Source</a></div>
+        <div><a aria-selected="false" href="dfe535de-719c-44eb-9d6c-fe91285cc55a-timeline.html">Timeline</a></div>
+        <div><a aria-selected="true" href="dfe535de-719c-44eb-9d6c-fe91285cc55a-run.html">Run</a></div>
+    </div>
+    <div class="report-nav-summary">
+        <div><div class="item-name">File:</div><div><a href="dfe535de-719c-44eb-9d6c-fe91285cc55a-source.html">/test/catalogue_endpoints.hurl</a></div></div>
+        <div><div class="item-name">Status:</div><div><span class="failure"><a href="dfe535de-719c-44eb-9d6c-fe91285cc55a-timeline.html">failure</a></span></div></div>
+        <div><div class="item-name">Duration:</div><div>28 ms</div></div>
+        <div><div class="item-name">Errors:</div><div>1</div></div>
+        <div></div>
+    </div>
+    <div class="errors"><div class="error"><div class="error-desc"><pre><code>Assert failure
+  --&gt; <a href="dfe535de-719c-44eb-9d6c-fe91285cc55a-source.html#l8">/test/catalogue_endpoints.hurl:8:0</a>
+   |
+   | GET {{baseURL}}/catalogues
+   | ...
+ 8 | body contains "bdr-cat:vocabularies"
+   |   actual:   string &lt;@prefix shext: &lt;http://example.com/shacl-extension#&gt; .
+   |@prefix ex: &lt;http://example.org/&gt; .
+   |@prefix ibra7-codes: &lt;http://linked.data.gov.au/dataset/bioregion/&gt; .
+   |@prefix tern-cv: &lt;http://linked.data.gov.au/def/tern-cv/&gt; .
+   |@prefix void: &lt;http://rdfs.org/ns/void#&gt; .
+   |@prefix dwciri: &lt;http://rs.tdwg.org/dwc/iri/&gt; .
+   |@prefix dwc: &lt;http://rs.tdwg.org/dwc/terms/&gt; .
+   |@prefix aclump-voc: &lt;http://www.neii.gov.au/def/voc/ACLUMP/australian-land-use-and-management-classification/&gt; .
+   |@prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt; .
+   |@prefix time: &lt;http://www.w3.org/2006/time#&gt; .
+   |@prefix altr-ext: &lt;http://www.w3.org/ns/dx/connegp/altr-ext#&gt; .
+   |@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+   |@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .
+   |@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
+   |@prefix exm: &lt;https://example.com/&gt; .
+   |@prefix bdr-ds: &lt;https://linked.data.gov.au/dataset/bdr/&gt; .
+   |@prefix bdr-cat: &lt;https://linked.data.gov.au/dataset/bdr/catalogues/&gt; .
+   |@prefix bdr-datatypes: &lt;https://linked.data.gov.au/dataset/bdr/datatypes/&gt; .
+   |@prefix fc: &lt;https://linked.data.gov.au/dataset/bdr/feature-collection/&gt; .
+   |@prefix bdr-obsprops: &lt;https://linked.data.gov.au/dataset/bdr/obsprops/&gt; .
+   |@prefix oc: &lt;https://linked.data.gov.au/dataset/bdr/occurrence-collection/&gt; .
+   |@prefix bdr-occ: &lt;https://linked.data.gov.au/dataset/bdr/occurrences/&gt; .
+   |@prefix bdr-orgs: &lt;https://linked.data.gov.au/dataset/bdr/orgs/&gt; .
+   |@prefix bdr-rec: &lt;https://linked.data.gov.au/dataset/bdr/records/&gt; .
+   |@prefix abis: &lt;https://linked.data.gov.au/def/abis/&gt; .
+   |@prefix abis-vocab-themes: &lt;https://linked.data.gov.au/def/abis/vocab-themes/&gt; .
+   |@prefix bdrpr: &lt;https://linked.data.gov.au/def/bdr-pr/&gt; .
+   |@prefix sm: &lt;https://linked.data.gov.au/def/bdr-pr/sm/&gt; .
+   |@prefix data-roles: &lt;https://linked.data.gov.au/def/data-roles/&gt; .
+   |@prefix emsa-cv: &lt;https://linked.data.gov.au/def/nrm/&gt; .
+   |@prefix olis: &lt;https://olis.dev/&gt; .
+   |@prefix prez: &lt;https://prez.dev/&gt; .
+   |@prefix profile: &lt;https://prez.dev/profile/&gt; .
+   |@prefix prfl: &lt;https://w3id.org/profile/&gt; .
+   |@prefix tern: &lt;https://w3id.org/tern/ontologies/tern/&gt; .
+   |bdr-ds:catalogues\/models prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Models" ;
+   |	prez:label "Models Catalogue" .
+   |&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; prez:description "The subject is an instance of a class." ;
+   |	prez:label "type" .
+   |prez:members prez:label "members" .
+   |prez:count prez:label "count" .
+   |bdr-ds:catalogues\/bdr prez:description "This is the top-level catalogue for the Biodiversity Data Repository and it contains sub-catalogue for each major type of object within the BDR: Datasets. Models, Vocabularies and Validators. See those catalogues for further sub-catalogues" ;
+   |	prez:label "Master Catalogue" .
+   |bdr-ds:catalogues\/validators prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Validators" ;
+   |	prez:label "Validators Catalogue" .
+   |prez:link prez:label "link" .
+   |&lt;https://schema.org/DataCatalog&gt; prez:description "A collection of datasets." ;
+   |	prez:label "Data catalog" .
+   |&lt;http://www.w3.org/2001/XMLSchema#string&gt; prez:label "string" .
+   |prez:OGCListingProfile prez:description "A profile for listing different kinds of items relevant to an OGC Records API" ;
+   |	prez:label "OGC Listing Profile" .
+   |bdr-ds:catalogues\/datasets prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Datasets" ;
+   |	prez:label "Datasets Catalogue" .
+   |bdr-ds:catalogues\/validators prez:link "/catalogues/bdr-cat:validators" ;
+   |	prez:identifier "bdr-cat:validators" ;
+   |	prez:members "/catalogues/bdr-cat:validators/collections" ;
+   |	prez:link "/catalogues/bdr-cat:bdr/collections/bdr-cat:validators" .
+   |bdr-ds:catalogues\/datasets prez:link "/catalogues/bdr-cat:datasets" ;
+   |	prez:identifier "bdr-cat:datasets" ;
+   |	prez:members "/catalogues/bdr-cat:datasets/collections" ;
+   |	prez:link "/catalogues/bdr-cat:bdr/collections/bdr-cat:datasets" .
+   |bdr-ds:catalogues\/bdr prez:link "/catalogues/bdr-cat:bdr" ;
+   |	prez:members "/catalogues/bdr-cat:bdr/collections" .
+   |bdr-ds:catalogues\/models prez:link "/catalogues/bdr-cat:models" ;
+   |	prez:identifier "bdr-cat:models" ;
+   |	prez:members "/catalogues/bdr-cat:models/collections" ;
+   |	prez:link "/catalogues/bdr-cat:bdr/collections/bdr-cat:models" .
+   |bdr-ds:catalogues\/bdr prez:identifier "bdr-cat:bdr" .
+   |_:a113f610c5c9e3389f951b439ba439b9 prez:currentProfile prez:OGCListingProfile .
+   |_:ae70afbe3570f7849764bb56eb4e7e4b prez:count "4" .
+   |bdr-ds:catalogues\/bdr prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/datasets prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/models prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/validators prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |&gt;
+   |   expected: contains string &lt;bdr-cat:vocabularies&gt;
+   |</code></pre></div></div></div>
+</div>
+
+        <details open><summary>Entry 1</summary><table><thead><tr><th colspan="2">Debug</tr></th></thead><tbody><tr><td class="name">Command</td><td class="value">curl 'http://prez:8010/catalogues'</td></tr></tbody></table><h4 id="e1:c1">Call 1</h3><table><thead><tr><th colspan="2">General</tr></th></thead><tbody><tr><td class="name">Request URL</td><td class="value"><a href="http://prez:8010/catalogues">http://prez:8010/catalogues</a></td></tr><tr><td class="name">Request Method</td><td class="value">GET</td></tr><tr><td class="name">Version</td><td class="value">HTTP/1.1</td></tr><tr><td class="name">Status code</td><td class="value">200</td></tr><tr><td class="name">Source</td><td class="value"><a href="dfe535de-719c-44eb-9d6c-fe91285cc55a-source.html#l3">/test/catalogue_endpoints.hurl:3</a></td></tr></tbody></table><table><thead><tr><th colspan="2">Request Headers</tr></th></thead><tbody><tr><td class="name">Accept</td><td class="value">*/*</td></tr><tr><td class="name">Host</td><td class="value">prez:8010</td></tr><tr><td class="name">User-Agent</td><td class="value">hurl/7.0.0</td></tr></tbody></table><table><thead><tr><th colspan="2">Response Headers</tr></th></thead><tbody><tr><td class="name">access-control-allow-credentials</td><td class="value">true</td></tr><tr><td class="name">access-control-allow-headers</td><td class="value">Content-Type, Authorization</td></tr><tr><td class="name">access-control-allow-methods</td><td class="value">GET, POST, OPTIONS</td></tr><tr><td class="name">access-control-allow-origin</td><td class="value">*</td></tr><tr><td class="name">content-disposition</td><td class="value">inline</td></tr><tr><td class="name">content-type</td><td class="value">text/anot+turtle</td></tr><tr><td class="name">date</td><td class="value">Mon, 13 Oct 2025 07:18:02 GMT</td></tr><tr><td class="name">link</td><td class="value"><https://prez.dev/OGCListingProfile>; rel="profile", <http://www.w3.org/ns/dx/prof/Profile>; rel="type"; title="Members"; token="prfl:mem"; anchor="https://w3id.org/profile/mem", <http://www.w3.org/ns/dx/prof/Profile>; rel="type"; title="OGC Listing Profile"; token="prez:OGCListingProfile"; anchor="https://prez.dev/OGCListingProfile", <http://www.w3.org/ns/dx/prof/Profile>; rel="type"; title="Alternates Profile"; token="altr-ext:alt-profile"; anchor="http://www.w3.org/ns/dx/connegp/altr-ext#alt-profile", <http://localhost:8000/catalogues?_profile=prez:OGCListingProfile&_mediatype=text/anot+turtle>; rel="self"; type="text/anot+turtle"; format="https://prez.dev/OGCListingProfile", <http://localhost:8000/catalogues?_profile=prez:OGCListingProfile&_mediatype=application/ld+json>; rel="alternate"; type="application/ld+json"; format="https://prez.dev/OGCListingProfile", <http://localhost:8000/catalogues?_profile=prez:OGCListingProfile&_mediatype=application/anot+ld+json>; rel="alternate"; type="application/anot+ld+json"; format="https://prez.dev/OGCListingProfile", <http://localhost:8000/catalogues?_profile=prez:OGCListingProfile&_mediatype=text/turtle>; rel="alternate"; type="text/turtle"; format="https://prez.dev/OGCListingProfile", <http://localhost:8000/catalogues?_profile=prez:OGCListingProfile&_mediatype=application/rdf+xml>; rel="alternate"; type="application/rdf+xml"; format="https://prez.dev/OGCListingProfile", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=text/anot+turtle>; rel="alternate"; type="text/anot+turtle"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=text/anot+turtle>; rel="alternate"; type="text/anot+turtle"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=altr-ext:alt-profile&_mediatype=text/anot+turtle>; rel="alternate"; type="text/anot+turtle"; format="http://www.w3.org/ns/dx/connegp/altr-ext#alt-profile", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/rdf+xml>; rel="alternate"; type="application/rdf+xml"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/anot+ld+json>; rel="alternate"; type="application/anot+ld+json"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/n-triples>; rel="alternate"; type="application/n-triples"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/anot+n-triples>; rel="alternate"; type="application/anot+n-triples"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=text/turtle>; rel="alternate"; type="text/turtle"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/ld+json>; rel="alternate"; type="application/ld+json"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/rdf+xml>; rel="alternate"; type="application/rdf+xml"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/anot+ld+json>; rel="alternate"; type="application/anot+ld+json"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/n-triples>; rel="alternate"; type="application/n-triples"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/anot+n-triples>; rel="alternate"; type="application/anot+n-triples"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=text/turtle>; rel="alternate"; type="text/turtle"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=prfl:mem&_mediatype=application/ld+json>; rel="alternate"; type="application/ld+json"; format="https://w3id.org/profile/mem", <http://localhost:8000/catalogues?_profile=altr-ext:alt-profile&_mediatype=application/rdf+xml>; rel="alternate"; type="application/rdf+xml"; format="http://www.w3.org/ns/dx/connegp/altr-ext#alt-profile", <http://localhost:8000/catalogues?_profile=altr-ext:alt-profile&_mediatype=application/ld+json>; rel="alternate"; type="application/ld+json"; format="http://www.w3.org/ns/dx/connegp/altr-ext#alt-profile", <http://localhost:8000/catalogues?_profile=altr-ext:alt-profile&_mediatype=application/anot+ld+json>; rel="alternate"; type="application/anot+ld+json"; format="http://www.w3.org/ns/dx/connegp/altr-ext#alt-profile", <http://localhost:8000/catalogues?_profile=altr-ext:alt-profile&_mediatype=text/turtle>; rel="alternate"; type="text/turtle"; format="http://www.w3.org/ns/dx/connegp/altr-ext#alt-profile"</td></tr><tr><td class="name">server</td><td class="value">uvicorn</td></tr><tr><td class="name">Transfer-Encoding</td><td class="value">chunked</td></tr></tbody></table></details>
+    </div>
+</div>
+</body>
+</html>
