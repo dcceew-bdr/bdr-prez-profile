@@ -1,0 +1,70 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix ont: <https://prez.dev/ont/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <https://schema.org/> .
+@prefix customendpoints: <https://prez/custom-endpoints/> .
+
+customendpoints:catalogues-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
+    rdfs:label "Catalogues Listing" ;
+    ont:apiPath "/catalogues" ;
+    ont:relevantShapes customendpoints:shape-R0-HL1 .
+
+customendpoints:catalogues-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
+    rdfs:label "Catalogues Object" ;
+    ont:apiPath "/catalogues/{catalogueId}" ;
+    ont:relevantShapes customendpoints:shape-R0-HL1 .
+
+customendpoints:collections-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
+    rdfs:label "Collections Listing" ;
+    ont:apiPath "/catalogues/{catalogueId}/collections" ;
+    ont:relevantShapes customendpoints:shape-R0-HL2 .
+
+customendpoints:collections-object a ont:DynamicEndpoint, ont:ObjectEndpoint ;
+    rdfs:label "Collections Object" ;
+    ont:apiPath "/catalogues/{catalogueId}/collections/{recordsCollectionId}" ;
+    ont:relevantShapes customendpoints:shape-R0-HL2 .
+
+customendpoints:items-listing a ont:DynamicEndpoint, ont:ListingEndpoint ;
+    rdfs:label "Items Listing" ;
+    ont:apiPath "/catalogues/{catalogueId}/collections/{recordsCollectionId}/items" ;
+    ont:relevantShapes customendpoints:shape-R0-HL3 .
+
+customendpoints:items-object a ont:DynamicEndpoint,ont:ObjectEndpoint ;
+    rdfs:label "Items Object" ;
+    ont:apiPath "/catalogues/{catalogueId}/collections/{recordsCollectionId}/items/{itemId}" ;
+    ont:relevantShapes customendpoints:shape-R0-HL3 .
+
+customendpoints:shape-R0-HL1 a sh:NodeShape ;
+    sh:targetClass dcat:Catalog , schema:DataCatalog ;
+    sh:property [
+      sh:path [ sh:alternativePath ( [ sh:inversePath schema:isPartOf ] schema:hasPart )] ;
+      sh:class schema:DataCatalog ;
+    ] ;
+    ont:hierarchyLevel 1 .
+
+customendpoints:shape-R0-HL2 a sh:NodeShape ;
+    sh:targetClass schema:DataCatalog ;
+    sh:property [
+      sh:path [ sh:alternativePath ( [ sh:inversePath schema:hasPart ] schema:isPartOf )] ;
+      sh:class schema:DataCatalog ;
+    ] ;
+    ont:hierarchyLevel 2 .
+
+customendpoints:shape-R0-HL3 a sh:NodeShape ;
+    sh:targetClass skos:ConceptScheme , owl:Ontology , schema:Dataset;
+    sh:property [
+      sh:path [ sh:alternativePath ( [ sh:inversePath schema:hasPart ] schema:isPartOf )] ;
+      sh:class schema:DataCatalog ;
+    ] ;
+    sh:property [
+      sh:path (
+                  sh:alternativePath ( [ sh:inversePath schema:hasPart ] schema:isPartOf )
+                  sh:alternativePath ( [ sh:inversePath schema:hasPart ] schema:isPartOf )
+              ) ;
+      sh:class schema:DataCatalog ;
+    ] ;
+    ont:hierarchyLevel 3 .
+

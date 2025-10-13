@@ -1,0 +1,38 @@
+services:
+  prez:
+    image: gswadevacr.azurecr.io/prez:custom-config-16
+    container_name: prez-test
+    ports:
+      - "8010:8010"
+    environment:
+      CUSTOM_ENDPOINTS: "true"
+      DISABLE_PREFIX_GENERATION: "true"
+      ENDPOINT_STRUCTURE: '["catalogues", "collections", "items"]'
+      PORT: "8010"
+#      PYOXIGRAPH_DATA_DIR: "/app/data"
+#      SPARQL_REPO_TYPE: "pyoxigraph_memory"
+      SPARQL_ENDPOINT: "https://sandbox1.testing.bdr.gov.au/repositories/vocabularies"
+      SPARQL_USERNAME: "admin"
+      SPARQL_PASSWORD: "bdr"
+    volumes:
+      - ./vocabs/catalogues_endpoints.ttl:/app/reference_data/endpoints/data_endpoints_custom/catalogues_endpoints.ttl:ro
+      - /home/david/PycharmProjects/bdr-catalogues/dump:/app/data:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://0.0.0.0:8010/health | grep -q '\"status\":\"ok\"'"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  hurl:
+    image: ghcr.io/orange-opensource/hurl:latest
+    container_name: hurl-test
+    depends_on:
+      prez:
+        condition: service_healthy
+    volumes:
+      - ./test:/test:ro
+      - ./test/reports:/reports
+    profiles:
+      - test
+    command: ["--test", "--report-html", "/reports", "/test/catalogue_endpoints.hurl", "--variables-file", "/test/vars.env"]

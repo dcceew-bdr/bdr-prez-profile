@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Report</title>
+    <style>
+        body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2 {
+    color: #ff0288;
+    font-size: 2.5rem;
+}
+
+.summary {
+    margin: 32px 0 32px 0;
+    font-size: 1.25rem;
+}
+
+a {
+    color: royalblue;
+}
+
+@media (prefers-color-scheme: dark) {
+    a {
+        color: #34a7ff;
+    }
+}
+
+.date {
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 4px 8px 4px 0;
+}
+
+thead {
+    font-weight: bold;
+}
+
+.success, .success a {
+    color: green;
+}
+
+.failure, .failure a {
+    color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #19191c;
+        color: #c2c2c2;
+    }
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Report</h2>
+    <div class="summary">
+        <div class="date">Mon, 13 Oct 2025 06:46:12 +0000</div>
+        <div class="count">Executed: 1 (100%)</div>
+        <div class="count">Succeeded: 0 (0.0%)</div>
+        <div class="count">Failed: 1 (100.0%)</div>
+    </div>
+    <table>
+        <thead>
+        <td>File</td>
+        <td>Status</td>
+        <td>Start Time</td>
+        <td>Duration</td>
+        </thead>
+        <tbody>
+        <tr data-duration="379" data-status="failure" data-filename="/test/catalogue_endpoints.hurl" data-id="9a087ac4-0dfd-4f29-b5e1-0bd1f1f47bfd" data-timestamp="1760337972">
+    <td><a href="store/9a087ac4-0dfd-4f29-b5e1-0bd1f1f47bfd-source.html">/test/catalogue_endpoints.hurl</a></td>
+    <td class="failure"><a href="store/9a087ac4-0dfd-4f29-b5e1-0bd1f1f47bfd-timeline.html">failure</a></td>
+    <td>2025-10-13T06:46:12+00:00</td>
+    <td>0.379</td>
+</tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

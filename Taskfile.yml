@@ -1,0 +1,30 @@
+version: '3'
+
+tasks:
+  init:
+    desc: Start Prez test container
+    cmds:
+      - docker-compose -f docker-compose.test.yml up -d
+
+  stop:
+    desc: Stop Prez test container
+    cmds:
+      - docker-compose -f docker-compose.test.yml down
+
+  logs:
+    desc: Show Prez test container logs
+    cmds:
+      - docker-compose -f docker-compose.test.yml logs -f
+
+  hurl:
+    desc: Run hurl tests against Prez
+    deps: [init]
+    cmds:
+      - docker-compose -f docker-compose.test.yml run --rm hurl
+
+  run:
+    desc: Start container, run tests, and stop container
+    cmds:
+      - task: init
+      - task: hurl
+      - task: stop
