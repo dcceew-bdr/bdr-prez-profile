@@ -35,4 +35,4 @@ services:
       - ./test/reports:/reports
     profiles:
       - test
-    command: ["--test", "--report-html", "/reports", "/test/catalogue_endpoints.hurl", "--variables-file", "/test/vars.env"]
+    command: ["--test", "--report-html", "/reports", "/test/catalogue_endpoints.hurl", "--variables-file", "/test/vars.env", "--continue-on-error"]
