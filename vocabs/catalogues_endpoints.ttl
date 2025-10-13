@@ -43,6 +43,13 @@ customendpoints:shape-R0-HL1 a sh:NodeShape ;
       sh:path [ sh:alternativePath ( [ sh:inversePath schema:isPartOf ] schema:hasPart )] ;
       sh:class schema:DataCatalog ;
     ] ;
+#    sh:property [
+#      sh:path (
+#                  sh:alternativePath ( [ sh:inversePath schema:hasPart ] schema:isPartOf )
+#                  sh:alternativePath ( [ sh:inversePath schema:hasPart ] schema:isPartOf )
+#              ) ;
+#      sh:or ( [ sh:class skos:ConceptScheme ] [sh:class owl:Ontology ] [sh:class schema:Dataset ]) ;
+#    ] ;
     ont:hierarchyLevel 1 .
 
 customendpoints:shape-R0-HL2 a sh:NodeShape ;

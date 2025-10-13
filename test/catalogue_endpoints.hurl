@@ -1,5 +1,5 @@
 # Test Catalogues Listing Endpoint
-
+# Is the intention that tern-cv, bdr-cv, nrm
 GET {{baseURL}}/catalogues
 HTTP 200
 [Asserts]

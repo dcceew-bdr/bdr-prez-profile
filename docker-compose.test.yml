@@ -9,11 +9,11 @@ services:
       DISABLE_PREFIX_GENERATION: "true"
       ENDPOINT_STRUCTURE: '["catalogues", "collections", "items"]'
       PORT: "8010"
-#      PYOXIGRAPH_DATA_DIR: "/app/data"
-#      SPARQL_REPO_TYPE: "pyoxigraph_memory"
-      SPARQL_ENDPOINT: "https://sandbox1.testing.bdr.gov.au/repositories/vocabularies"
-      SPARQL_USERNAME: "admin"
-      SPARQL_PASSWORD: "bdr"
+      PYOXIGRAPH_DATA_DIR: "/app/data"
+      SPARQL_REPO_TYPE: "pyoxigraph_memory"
+#      SPARQL_ENDPOINT: "https://sandbox1.testing.bdr.gov.au/repositories/vocabularies"
+#      SPARQL_USERNAME: "admin"
+#      SPARQL_PASSWORD: "bdr"
     volumes:
       - ./vocabs/catalogues_endpoints.ttl:/app/reference_data/endpoints/data_endpoints_custom/catalogues_endpoints.ttl:ro
       - /home/david/PycharmProjects/bdr-catalogues/dump:/app/data:ro
