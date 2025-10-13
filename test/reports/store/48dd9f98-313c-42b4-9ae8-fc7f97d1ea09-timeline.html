@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>/test/catalogue_endpoints.hurl</title>
+    <style>
+        body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.4;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timeline-container {
+    max-width: 1400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px #dcdcde;
+    display: flex;
+}
+
+.calls {
+    position: sticky;
+    left: 0;
+    right: 0;
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.waterfall {
+    overflow: auto;
+    overflow-y: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #19191c;
+        color: #c2c2c2;
+    }
+
+    .timeline-container {
+        border-color: #444;
+    }
+}
+
+        .report-nav {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.report-nav-links {
+    display: flex;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.report-nav a {
+    color: royalblue;
+    margin-right: 20px;
+}
+
+.report-nav a[aria-selected="true"] {
+    color: #ff0288;
+}
+
+.report-nav-summary > div {
+    display: flex;
+}
+
+.report-nav-summary .item-name {
+    min-width: 100px;
+    font-weight: bold;
+}
+
+.error {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-left: red 4px solid;
+}
+
+.error-desc {
+    background: #f5f5f5;
+}
+
+.error-desc pre {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    margin: 0.75rem;
+    padding: 0.8rem;
+    overflow-x: auto;
+}
+
+.error-desc pre code {
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+.success, .success a {
+    color: green;
+}
+
+.failure, .failure a {
+    color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+    .report-nav a {
+        color: #34a7ff;
+    }
+    
+    .success, .success a {
+        color: green;
+    }
+
+    .report-nav a[aria-selected="true"] {
+        color: #ff0288;
+    }
+
+    .error-desc {
+        background: #27272c;
+    }
+}
+
+    </style>
+<body>
+<div>
+    <div class="container">
+        <div class="report-nav">
+    <div class="report-nav-links">
+        <div><a href="../index.html">Report</a></div>
+        <div><a aria-selected="false" href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html">Source</a></div>
+        <div><a aria-selected="true" href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-timeline.html">Timeline</a></div>
+        <div><a aria-selected="false" href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html">Run</a></div>
+    </div>
+    <div class="report-nav-summary">
+        <div><div class="item-name">File:</div><div><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html">/test/catalogue_endpoints.hurl</a></div></div>
+        <div><div class="item-name">Status:</div><div><span class="failure"><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-timeline.html">failure</a></span></div></div>
+        <div><div class="item-name">Duration:</div><div>192 ms</div></div>
+        <div><div class="item-name">Errors:</div><div>2</div></div>
+        <div></div>
+    </div>
+    <div class="errors"><div class="error"><div class="error-desc"><pre><code>Assert failure
+  --&gt; <a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l6">/test/catalogue_endpoints.hurl:6:0</a>
+   |
+   | GET {{baseURL}}/catalogues
+   | ...
+ 6 | body contains "prez:count \"4\""
+   |   actual:   string &lt;@prefix shext: &lt;http://example.com/shacl-extension#&gt; .
+   |@prefix ex: &lt;http://example.org/&gt; .
+   |@prefix ibra7-codes: &lt;http://linked.data.gov.au/dataset/bioregion/&gt; .
+   |@prefix tern-cv: &lt;http://linked.data.gov.au/def/tern-cv/&gt; .
+   |@prefix void: &lt;http://rdfs.org/ns/void#&gt; .
+   |@prefix dwciri: &lt;http://rs.tdwg.org/dwc/iri/&gt; .
+   |@prefix dwc: &lt;http://rs.tdwg.org/dwc/terms/&gt; .
+   |@prefix aclump-voc: &lt;http://www.neii.gov.au/def/voc/ACLUMP/australian-land-use-and-management-classification/&gt; .
+   |@prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt; .
+   |@prefix time: &lt;http://www.w3.org/2006/time#&gt; .
+   |@prefix altr-ext: &lt;http://www.w3.org/ns/dx/connegp/altr-ext#&gt; .
+   |@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+   |@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .
+   |@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
+   |@prefix exm: &lt;https://example.com/&gt; .
+   |@prefix bdr-ds: &lt;https://linked.data.gov.au/dataset/bdr/&gt; .
+   |@prefix bdr-cat: &lt;https://linked.data.gov.au/dataset/bdr/catalogues/&gt; .
+   |@prefix bdr-datatypes: &lt;https://linked.data.gov.au/dataset/bdr/datatypes/&gt; .
+   |@prefix fc: &lt;https://linked.data.gov.au/dataset/bdr/feature-collection/&gt; .
+   |@prefix bdr-obsprops: &lt;https://linked.data.gov.au/dataset/bdr/obsprops/&gt; .
+   |@prefix oc: &lt;https://linked.data.gov.au/dataset/bdr/occurrence-collection/&gt; .
+   |@prefix bdr-occ: &lt;https://linked.data.gov.au/dataset/bdr/occurrences/&gt; .
+   |@prefix bdr-op: &lt;https://linked.data.gov.au/dataset/bdr/op/&gt; .
+   |@prefix bdr-orgs: &lt;https://linked.data.gov.au/dataset/bdr/orgs/&gt; .
+   |@prefix bdr-rec: &lt;https://linked.data.gov.au/dataset/bdr/records/&gt; .
+   |@prefix bdr-sma: &lt;https://linked.data.gov.au/dataset/bdr/sma/&gt; .
+   |@prefix bdr-smrr: &lt;https://linked.data.gov.au/dataset/bdr/smrr/&gt; .
+   |@prefix abis: &lt;https://linked.data.gov.au/def/abis/&gt; .
+   |@prefix abis-vocab-themes: &lt;https://linked.data.gov.au/def/abis/vocab-themes/&gt; .
+   |@prefix alum: &lt;https://linked.data.gov.au/def/alum/&gt; .
+   |@prefix bdrpr: &lt;https://linked.data.gov.au/def/bdr-pr/&gt; .
+   |@prefix sm: &lt;https://linked.data.gov.au/def/bdr-pr/sm/&gt; .
+   |@prefix data-roles: &lt;https://linked.data.gov.au/def/data-roles/&gt; .
+   |@prefix emsa-cv: &lt;https://linked.data.gov.au/def/nrm/&gt; .
+   |@prefix olis: &lt;https://olis.dev/&gt; .
+   |@prefix prez: &lt;https://prez.dev/&gt; .
+   |@prefix profile: &lt;https://prez.dev/profile/&gt; .
+   |@prefix prfl: &lt;https://w3id.org/profile/&gt; .
+   |@prefix tern: &lt;https://w3id.org/tern/ontologies/tern/&gt; .
+   |bdr-ds:catalogues\/vocabularies prez:label "Vocabularies Catalogue" ;
+   |	prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Vocabularies" .
+   |bdr-ds:catalogues\/abis-vocabularies prez:description "This is a third-level catalogue of the Biodiversity Data Repository containing vocabularies relevant to ABIS.\n\nIt contains all vocabularies thought relevant to ABIS that are not " ;
+   |	prez:label "ABIS Vocabularies Catalogue" .
+   |bdr-ds:catalogues\/validators prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Validators" ;
+   |	prez:label "Validators Catalogue" .
+   |prez:OGCListingProfile prez:description "A profile for listing different kinds of items relevant to an OGC Records API" ;
+   |	prez:label "OGC Listing Profile" .
+   |bdr-ds:catalogues\/models prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Models" ;
+   |	prez:label "Models Catalogue" .
+   |&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; prez:label "type" ;
+   |	prez:description "The subject is an instance of a class." .
+   |prez:members prez:label "members" .
+   |prez:count prez:label "count" .
+   |bdr-ds:catalogues\/bdr prez:description "This is the top-level catalogue for the Biodiversity Data Repository and it contains sub-catalogue for each major type of object within the BDR: Datasets. Models, Vocabularies and Validators. See those catalogues for further sub-catalogues" ;
+   |	prez:label "Master Catalogue" , "BDR Catalogues" .
+   |&lt;https://schema.org/DataCatalog&gt; prez:description "A collection of datasets." ;
+   |	prez:label "Data catalog" .
+   |prez:link prez:label "link" .
+   |&lt;http://www.w3.org/2001/XMLSchema#string&gt; prez:label "string" .
+   |bdr-ds:catalogues\/datasets prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Datasets" ;
+   |	prez:label "Datasets Catalogue" ;
+   |	prez:link "/catalogues/bdr-cat:datasets" ;
+   |	prez:identifier "bdr-cat:datasets" ;
+   |	prez:members "/catalogues/bdr-cat:datasets/collections" ;
+   |	prez:link "/catalogues/bdr-cat:bdr/collections/bdr-cat:datasets" .
+   |bdr-ds:catalogues\/validators prez:link "/catalogues/bdr-cat:validators" ;
+   |	prez:identifier "bdr-cat:validators" ;
+   |	prez:members "/catalogues/bdr-cat:validators/collections" ;
+   |	prez:link "/catalogues/bdr-cat:bdr/collections/bdr-cat:validators" .
+   |bdr-ds:catalogues\/abis-vocabularies prez:link "/catalogues/bdr-cat:abis-vocabularies" ;
+   |	prez:identifier "bdr-cat:abis-vocabularies" ;
+   |	prez:members "/catalogues/bdr-cat:abis-vocabularies/collections" .
+   |bdr-ds:catalogues\/bdr prez:link "/catalogues/bdr-cat:bdr" ;
+   |	prez:members "/catalogues/bdr-cat:bdr/collections" .
+   |bdr-ds:catalogues\/models prez:link "/catalogues/bdr-cat:models" ;
+   |	prez:identifier "bdr-cat:models" ;
+   |	prez:members "/catalogues/bdr-cat:models/collections" ;
+   |	prez:link "/catalogues/bdr-cat:bdr/collections/bdr-cat:models" .
+   |bdr-ds:catalogues\/vocabularies prez:link "/catalogues/bdr-cat:vocabularies" ;
+   |	prez:identifier "bdr-cat:vocabularies" ;
+   |	prez:members "/catalogues/bdr-cat:vocabularies/collections" ;
+   |	prez:link "/catalogues/bdr-cat:bdr/collections/bdr-cat:vocabularies" .
+   |bdr-ds:catalogues\/bdr prez:identifier "bdr-cat:bdr" .
+   |_:afa269cb5220927ea525b8faf636e7b9 prez:currentProfile prez:OGCListingProfile .
+   |_:f7c603e10606dd29a926c1a2c96b2aa7 prez:count "6" .
+   |bdr-ds:catalogues\/validators prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/bdr prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/models prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/vocabularies prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/abis-vocabularies prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/datasets prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |&gt;
+   |   expected: contains string &lt;prez:count "4"&gt;
+   |</code></pre></div></div><div class="error"><div class="error-desc"><pre><code>Assert failure
+  --&gt; <a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l81">/test/catalogue_endpoints.hurl:81:0</a>
+   |
+   | GET {{baseURL}}/catalogues/bdr-cat:vocabularies/collections
+   | ...
+81 | body contains "prez:count \"6\""
+   |   actual:   string &lt;@prefix shext: &lt;http://example.com/shacl-extension#&gt; .
+   |@prefix ex: &lt;http://example.org/&gt; .
+   |@prefix ibra7-codes: &lt;http://linked.data.gov.au/dataset/bioregion/&gt; .
+   |@prefix tern-cv: &lt;http://linked.data.gov.au/def/tern-cv/&gt; .
+   |@prefix void: &lt;http://rdfs.org/ns/void#&gt; .
+   |@prefix dwciri: &lt;http://rs.tdwg.org/dwc/iri/&gt; .
+   |@prefix dwc: &lt;http://rs.tdwg.org/dwc/terms/&gt; .
+   |@prefix aclump-voc: &lt;http://www.neii.gov.au/def/voc/ACLUMP/australian-land-use-and-management-classification/&gt; .
+   |@prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt; .
+   |@prefix time: &lt;http://www.w3.org/2006/time#&gt; .
+   |@prefix altr-ext: &lt;http://www.w3.org/ns/dx/connegp/altr-ext#&gt; .
+   |@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+   |@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .
+   |@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
+   |@prefix exm: &lt;https://example.com/&gt; .
+   |@prefix bdr-ds: &lt;https://linked.data.gov.au/dataset/bdr/&gt; .
+   |@prefix bdr-cat: &lt;https://linked.data.gov.au/dataset/bdr/catalogues/&gt; .
+   |@prefix bdr-datatypes: &lt;https://linked.data.gov.au/dataset/bdr/datatypes/&gt; .
+   |@prefix fc: &lt;https://linked.data.gov.au/dataset/bdr/feature-collection/&gt; .
+   |@prefix bdr-obsprops: &lt;https://linked.data.gov.au/dataset/bdr/obsprops/&gt; .
+   |@prefix oc: &lt;https://linked.data.gov.au/dataset/bdr/occurrence-collection/&gt; .
+   |@prefix bdr-occ: &lt;https://linked.data.gov.au/dataset/bdr/occurrences/&gt; .
+   |@prefix bdr-op: &lt;https://linked.data.gov.au/dataset/bdr/op/&gt; .
+   |@prefix bdr-orgs: &lt;https://linked.data.gov.au/dataset/bdr/orgs/&gt; .
+   |@prefix bdr-rec: &lt;https://linked.data.gov.au/dataset/bdr/records/&gt; .
+   |@prefix bdr-sma: &lt;https://linked.data.gov.au/dataset/bdr/sma/&gt; .
+   |@prefix bdr-smrr: &lt;https://linked.data.gov.au/dataset/bdr/smrr/&gt; .
+   |@prefix abis: &lt;https://linked.data.gov.au/def/abis/&gt; .
+   |@prefix abis-vocab-themes: &lt;https://linked.data.gov.au/def/abis/vocab-themes/&gt; .
+   |@prefix alum: &lt;https://linked.data.gov.au/def/alum/&gt; .
+   |@prefix bdrpr: &lt;https://linked.data.gov.au/def/bdr-pr/&gt; .
+   |@prefix sm: &lt;https://linked.data.gov.au/def/bdr-pr/sm/&gt; .
+   |@prefix data-roles: &lt;https://linked.data.gov.au/def/data-roles/&gt; .
+   |@prefix emsa-cv: &lt;https://linked.data.gov.au/def/nrm/&gt; .
+   |@prefix olis: &lt;https://olis.dev/&gt; .
+   |@prefix prez: &lt;https://prez.dev/&gt; .
+   |@prefix profile: &lt;https://prez.dev/profile/&gt; .
+   |@prefix prfl: &lt;https://w3id.org/profile/&gt; .
+   |@prefix tern: &lt;https://w3id.org/tern/ontologies/tern/&gt; .
+   |bdr-ds:catalogues\/vocabularies prez:label "Vocabularies Catalogue" ;
+   |	prez:description "This is a second-level catalogue of the Biodiversity Data Repository containing catalogues of Vocabularies" .
+   |bdr-ds:catalogues\/bdr-cv prez:label "BDR Vocabularies" .
+   |bdr-ds:catalogues\/abis-vocabularies prez:description "This is a third-level catalogue of the Biodiversity Data Repository containing vocabularies relevant to ABIS.\n\nIt contains all vocabularies thought relevant to ABIS that are not " ;
+   |	prez:label "ABIS Vocabularies Catalogue" .
+   |bdr-ds:catalogues\/tern-cv prez:label "TERN Vocabularies" .
+   |&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; prez:label "type" ;
+   |	prez:description "The subject is an instance of a class." .
+   |prez:members prez:label "members" .
+   |prez:count prez:label "count" .
+   |bdr-ds:catalogues\/nrm prez:label "EMSA Vocabularies" .
+   |bdr-ds:catalogues\/alum prez:label "ALUM Vocabularies" .
+   |prez:link prez:label "link" .
+   |&lt;https://schema.org/DataCatalog&gt; prez:description "A collection of datasets." ;
+   |	prez:label "Data catalog" .
+   |prfl:mem prez:description "A very basic data model that lists the members of container objects only, i.e. not their other properties" ;
+   |	prez:label "Members" .
+   |bdr-ds:catalogues\/asls prez:label "ASLS Vocabularies" .
+   |&lt;http://www.w3.org/2001/XMLSchema#string&gt; prez:label "string" .
+   |bdr-ds:catalogues\/alum prez:link "/catalogues/bdr-cat:alum" ;
+   |	prez:identifier "bdr-cat:alum" ;
+   |	prez:members "/catalogues/bdr-cat:alum/collections" ;
+   |	prez:link "/catalogues/bdr-cat:abis-vocabularies/collections/bdr-cat:alum" , "/catalogues/bdr-cat:vocabularies/collections/bdr-cat:alum" .
+   |bdr-ds:catalogues\/nrm prez:link "/catalogues/bdr-cat:nrm" ;
+   |	prez:identifier "bdr-cat:nrm" ;
+   |	prez:members "/catalogues/bdr-cat:nrm/collections" ;
+   |	prez:link "/catalogues/bdr-cat:abis-vocabularies/collections/bdr-cat:nrm" , "/catalogues/bdr-cat:vocabularies/collections/bdr-cat:nrm" .
+   |bdr-ds:catalogues\/tern-cv prez:link "/catalogues/bdr-cat:tern-cv" ;
+   |	prez:identifier "bdr-cat:tern-cv" ;
+   |	prez:members "/catalogues/bdr-cat:tern-cv/collections" ;
+   |	prez:link "/catalogues/bdr-cat:abis-vocabularies/collections/bdr-cat:tern-cv" , "/catalogues/bdr-cat:vocabularies/collections/bdr-cat:tern-cv" .
+   |bdr-ds:catalogues\/bdr-cv prez:link "/catalogues/bdr-cat:bdr-cv" ;
+   |	prez:identifier "bdr-cat:bdr-cv" ;
+   |	prez:members "/catalogues/bdr-cat:bdr-cv/collections" ;
+   |	prez:link "/catalogues/bdr-cat:abis-vocabularies/collections/bdr-cat:bdr-cv" , "/catalogues/bdr-cat:vocabularies/collections/bdr-cat:bdr-cv" .
+   |bdr-ds:catalogues\/asls prez:link "/catalogues/bdr-cat:asls" ;
+   |	prez:identifier "bdr-cat:asls" ;
+   |	prez:members "/catalogues/bdr-cat:asls/collections" ;
+   |	prez:link "/catalogues/bdr-cat:abis-vocabularies/collections/bdr-cat:asls" .
+   |bdr-ds:catalogues\/abis-vocabularies prez:identifier "bdr-cat:abis-vocabularies" .
+   |bdr-ds:catalogues\/asls prez:link "/catalogues/bdr-cat:vocabularies/collections/bdr-cat:asls" .
+   |bdr-ds:catalogues\/vocabularies prez:identifier "bdr-cat:vocabularies" .
+   |_:a0186879c4189f129904fdace2cc8f60 prez:currentProfile prfl:mem .
+   |_:f5cbceff986e55755010118a2b6251e2 prez:count "5" .
+   |bdr-ds:catalogues\/alum prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/asls prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/bdr-cv prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/nrm prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |bdr-ds:catalogues\/tern-cv prez:type prez:FocusNode ;
+   |	a &lt;https://schema.org/DataCatalog&gt; .
+   |&gt;
+   |   expected: contains string &lt;prez:count "6"&gt;
+   |</code></pre></div></div></div>
+</div>
+
+    </div>
+    <div class="timeline-container">
+        <div class="calls"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 516" width="260" height="516"><style>@media (prefers-color-scheme: dark) {
+    .calls-list {
+        fill: #c2c2c2;
+    }
+
+    .calls-back {
+        fill: #27272c;
+    }
+
+    .calls-grid rect {
+        fill: #444;
+    }
+}</style><symbol id="success" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" fill="#10bb00" /></symbol><symbol id="failure" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" fill="red" /></symbol><symbol id="retry" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" fill="gold" /></symbol><rect class="calls-back" x="0" y="0" width="100%" height="100%" fill="#fbfafd" /><g class="calls-grid"><rect x="0" y="50" width="260" height="1" fill="#ddd" /><rect x="0" y="73" width="260" height="1" fill="#ddd" /><rect x="0" y="98" width="260" height="1" fill="#ddd" /><rect x="0" y="121" width="260" height="1" fill="#ddd" /><rect x="0" y="146" width="260" height="1" fill="#ddd" /><rect x="0" y="169" width="260" height="1" fill="#ddd" /><rect x="0" y="194" width="260" height="1" fill="#ddd" /><rect x="0" y="217" width="260" height="1" fill="#ddd" /><rect x="0" y="242" width="260" height="1" fill="#ddd" /><rect x="0" y="265" width="260" height="1" fill="#ddd" /><rect x="259" y="0" width="1" height="516" fill="#ddd" /></g><g class="calls-list" font-size="13px" font-family="sans-serif" fill="#777"><use href="#failure" x="7" y="56" width="13" height="13" /><text x="25" y="67" fill="red">GET prez:8010/catalogues</text><text x="205" y="67" fill="red">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e1:c1"><text x="233" y="67" fill="royalblue" text-decoration="underline">run</text></a><use href="#success" x="7" y="80" width="13" height="13" /><text x="25" y="91">GET prez:8010/catalogues...</text><text x="205" y="91">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e2:c1"><text x="233" y="91" fill="royalblue" text-decoration="underline">run</text></a><use href="#success" x="7" y="104" width="13" height="13" /><text x="25" y="115">GET prez:8010/catalogues...</text><text x="205" y="115">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e3:c1"><text x="233" y="115" fill="royalblue" text-decoration="underline">run</text></a><use href="#success" x="7" y="128" width="13" height="13" /><text x="25" y="139">GET prez:8010/catalogues...</text><text x="205" y="139">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e4:c1"><text x="233" y="139" fill="royalblue" text-decoration="underline">run</text></a><use href="#success" x="7" y="152" width="13" height="13" /><text x="25" y="163">GET prez:8010/catalogues...</text><text x="205" y="163">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e5:c1"><text x="233" y="163" fill="royalblue" text-decoration="underline">run</text></a><use href="#success" x="7" y="176" width="13" height="13" /><text x="25" y="187">GET prez:8010/catalogues...</text><text x="205" y="187">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e6:c1"><text x="233" y="187" fill="royalblue" text-decoration="underline">run</text></a><use href="#success" x="7" y="200" width="13" height="13" /><text x="25" y="211">GET prez:8010/catalogues...</text><text x="205" y="211">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e7:c1"><text x="233" y="211" fill="royalblue" text-decoration="underline">run</text></a><use href="#success" x="7" y="224" width="13" height="13" /><text x="25" y="235">GET prez:8010/catalogues...</text><text x="205" y="235">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e8:c1"><text x="233" y="235" fill="royalblue" text-decoration="underline">run</text></a><use href="#failure" x="7" y="248" width="13" height="13" /><text x="25" y="259" fill="red">GET prez:8010/catalogues...</text><text x="205" y="259" fill="red">200</text><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e9:c1"><text x="233" y="259" fill="royalblue" text-decoration="underline">run</text></a></g></svg></div>
+        <div class="waterfall"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1138 516" width="1138" height="516"><style>.call-detail {
+    display: none;
+}
+
+.call-summary:hover + .call-detail, .call-detail:hover {
+    display: block;
+}
+
+.call-sel {
+    pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .grid-strip rect {
+        fill: #27272c;
+    }
+
+    .grid-ticks {
+        stroke: #444;
+    }
+
+    .call-back {
+        stroke: #444;
+        fill: #19191c;
+    }
+
+    .call-sel {
+        opacity: 0.1;
+    }
+
+    .call-legend {
+        fill: #c2c2c2;
+    }
+}</style><defs><filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.25" /></filter></defs><symbol id="success" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" fill="#10bb00" /></symbol><symbol id="failure" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" fill="red" /></symbol><symbol id="retry" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" fill="gold" /></symbol><g><g class="grid-strip"><rect x="0" y="50" width="1138" height="24" fill="#f5f5f5" /><rect x="0" y="98" width="1138" height="24" fill="#f5f5f5" /><rect x="0" y="146" width="1138" height="24" fill="#f5f5f5" /><rect x="0" y="194" width="1138" height="24" fill="#f5f5f5" /><rect x="0" y="242" width="1138" height="24" fill="#f5f5f5" /></g><g><g class="grid-ticks" stroke="#ccc"><line x1="119" y1="0" x2="119" y2="516" /><line x1="238" y1="0" x2="238" y2="516" /><line x1="357" y1="0" x2="357" y2="516" /><line x1="477" y1="0" x2="477" y2="516" /><line x1="596" y1="0" x2="596" y2="516" /><line x1="715" y1="0" x2="715" y2="516" /><line x1="834" y1="0" x2="834" y2="516" /><line x1="953" y1="0" x2="953" y2="516" /><line x1="1072" y1="0" x2="1072" y2="516" /></g><g font-size="15px" font-family="sans-serif" fill="#777"><text x="5" y="20">0 ms</text><text x="124" y="20">20 ms</text><text x="243" y="20">40 ms</text><text x="362" y="20">60 ms</text><text x="482" y="20">80 ms</text><text x="601" y="20">100 ms</text><text x="720" y="20">120 ms</text><text x="839" y="20">140 ms</text><text x="958" y="20">160 ms</text><text x="1077" y="20">180 ms</text></g></g></g><g><g class="call-summary"><rect x="1043.2445970489864" y="245" width="40.26568543807216" height="18" fill="#18c852" /><rect x="1083.5102824870585" y="245" width="54.37058826608323" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="1042.9467739318409" y="0" width="95.05322606815912" height="516" fill="red" opacity="0.05" class="call-sel" /><rect x="532" y="263" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#failure" x="546" y="277" width="20" height="20" /><text x="576" y="293" fill="red" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:vocabularies/c...  200</text><g><rect x="558" y="309" width="20" height="20" fill="#1d9688" /><text x="594" y="326">DNS lookup</text><text x="738" y="326">0.0 µs</text></g><g><rect x="558" y="339" width="20" height="20" fill="#fa7f03" /><text x="594" y="356">TCP handshake</text><text x="738" y="356">0.0 µs</text></g><g><rect x="558" y="369" width="20" height="20" fill="#9933ff" /><text x="594" y="386">SSL handshake</text><text x="738" y="386">0.0 µs</text></g><g><rect x="558" y="399" width="20" height="20" fill="#18c852" /><text x="594" y="416">Wait</text><text x="738" y="416">6.8 ms</text></g><g><rect x="558" y="429" width="20" height="20" fill="#36a9f4" /><text x="594" y="446">Data transfer</text><text x="738" y="446">9.1 ms</text></g><g font-weight="bold"><text x="594" y="476">Total</text><text x="738" y="476">15.9 ms</text></g><g><text x="912" y="327">Start:</text><text x="1012" y="327">175.1 ms</text></g><g><text x="912" y="357">Stop:</text><text x="1012" y="357">191.1 ms</text></g><g><text x="912" y="387">Transferred:</text><text x="1012" y="387">5.9 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e9:c1"><text x="912" y="443" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l77"><text x="1002" y="443" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="912" y="473" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="917.8312824190145" y="221" width="41.57015069116947" height="18" fill="#18c852" /><rect x="959.401433110184" y="221" width="78.23217641178103" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="917.539415764212" y="0" width="120.18354069289671" height="516" fill="green" opacity="0.05" class="call-sel" /><rect x="532" y="239" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#success" x="546" y="253" width="20" height="20" /><text x="576" y="269" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:vocabularies  200</text><g><rect x="558" y="285" width="20" height="20" fill="#1d9688" /><text x="594" y="302">DNS lookup</text><text x="738" y="302">0.0 µs</text></g><g><rect x="558" y="315" width="20" height="20" fill="#fa7f03" /><text x="594" y="332">TCP handshake</text><text x="738" y="332">0.0 µs</text></g><g><rect x="558" y="345" width="20" height="20" fill="#9933ff" /><text x="594" y="362">SSL handshake</text><text x="738" y="362">0.0 µs</text></g><g><rect x="558" y="375" width="20" height="20" fill="#18c852" /><text x="594" y="392">Wait</text><text x="738" y="392">7.0 ms</text></g><g><rect x="558" y="405" width="20" height="20" fill="#36a9f4" /><text x="594" y="422">Data transfer</text><text x="738" y="422">13.1 ms</text></g><g font-weight="bold"><text x="594" y="452">Total</text><text x="738" y="452">20.2 ms</text></g><g><text x="912" y="303">Start:</text><text x="1012" y="303">154.0 ms</text></g><g><text x="912" y="333">Stop:</text><text x="1012" y="333">174.2 ms</text></g><g><text x="912" y="363">Transferred:</text><text x="1012" y="363">9.8 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e8:c1"><text x="912" y="419" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l65"><text x="1002" y="419" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="912" y="449" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="834.5420694781029" y="197" width="37.174281482101826" height="18" fill="#18c852" /><rect x="871.7163509602047" y="197" width="41.89775612002952" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="834.2859415973578" y="0" width="79.4353818050489" height="516" fill="green" opacity="0.05" class="call-sel" /><rect x="532" y="215" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#success" x="546" y="229" width="20" height="20" /><text x="576" y="245" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:validators/col...  200</text><g><rect x="558" y="261" width="20" height="20" fill="#1d9688" /><text x="594" y="278">DNS lookup</text><text x="738" y="278">0.0 µs</text></g><g><rect x="558" y="291" width="20" height="20" fill="#fa7f03" /><text x="594" y="308">TCP handshake</text><text x="738" y="308">0.0 µs</text></g><g><rect x="558" y="321" width="20" height="20" fill="#9933ff" /><text x="594" y="338">SSL handshake</text><text x="738" y="338">0.0 µs</text></g><g><rect x="558" y="351" width="20" height="20" fill="#18c852" /><text x="594" y="368">Wait</text><text x="738" y="368">6.2 ms</text></g><g><rect x="558" y="381" width="20" height="20" fill="#36a9f4" /><text x="594" y="398">Data transfer</text><text x="738" y="398">7.0 ms</text></g><g font-weight="bold"><text x="594" y="428">Total</text><text x="738" y="428">13.3 ms</text></g><g><text x="912" y="279">Start:</text><text x="1012" y="279">140.1 ms</text></g><g><text x="912" y="309">Stop:</text><text x="1012" y="309">153.4 ms</text></g><g><text x="912" y="339">Transferred:</text><text x="1012" y="339">4.4 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e7:c1"><text x="912" y="395" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l56"><text x="1002" y="395" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="912" y="425" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="718.8854401658178" y="173" width="40.41459699664491" height="18" fill="#18c852" /><rect x="759.3000371624628" y="173" width="71.10824744966057" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="718.6293122850727" y="0" width="111.90405803625174" height="516" fill="green" opacity="0.05" class="call-sel" /><rect x="532" y="191" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#success" x="546" y="205" width="20" height="20" /><text x="576" y="221" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:validators  200</text><g><rect x="558" y="237" width="20" height="20" fill="#1d9688" /><text x="594" y="254">DNS lookup</text><text x="738" y="254">0.0 µs</text></g><g><rect x="558" y="267" width="20" height="20" fill="#fa7f03" /><text x="594" y="284">TCP handshake</text><text x="738" y="284">0.0 µs</text></g><g><rect x="558" y="297" width="20" height="20" fill="#9933ff" /><text x="594" y="314">SSL handshake</text><text x="738" y="314">0.0 µs</text></g><g><rect x="558" y="327" width="20" height="20" fill="#18c852" /><text x="594" y="344">Wait</text><text x="738" y="344">6.8 ms</text></g><g><rect x="558" y="357" width="20" height="20" fill="#36a9f4" /><text x="594" y="374">Data transfer</text><text x="738" y="374">11.9 ms</text></g><g font-weight="bold"><text x="594" y="404">Total</text><text x="738" y="404">18.8 ms</text></g><g><text x="912" y="255">Start:</text><text x="1012" y="255">120.6 ms</text></g><g><text x="912" y="285">Stop:</text><text x="1012" y="285">139.4 ms</text></g><g><text x="912" y="315">Transferred:</text><text x="1012" y="315">8.5 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e6:c1"><text x="912" y="371" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l48"><text x="1002" y="371" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="912" y="401" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="635.1316231621593" y="149" width="37.674624318906275" height="18" fill="#18c852" /><rect x="672.8062474810655" y="149" width="41.89775612002952" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="634.881451743757" y="0" width="79.92976817951035" height="516" fill="green" opacity="0.05" class="call-sel" /><rect x="532" y="167" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#success" x="546" y="181" width="20" height="20" /><text x="576" y="197" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:models/collect...  200</text><g><rect x="558" y="213" width="20" height="20" fill="#1d9688" /><text x="594" y="230">DNS lookup</text><text x="738" y="230">0.0 µs</text></g><g><rect x="558" y="243" width="20" height="20" fill="#fa7f03" /><text x="594" y="260">TCP handshake</text><text x="738" y="260">0.0 µs</text></g><g><rect x="558" y="273" width="20" height="20" fill="#9933ff" /><text x="594" y="290">SSL handshake</text><text x="738" y="290">0.0 µs</text></g><g><rect x="558" y="303" width="20" height="20" fill="#18c852" /><text x="594" y="320">Wait</text><text x="738" y="320">6.3 ms</text></g><g><rect x="558" y="333" width="20" height="20" fill="#36a9f4" /><text x="594" y="350">Data transfer</text><text x="738" y="350">7.0 ms</text></g><g font-weight="bold"><text x="594" y="380">Total</text><text x="738" y="380">13.4 ms</text></g><g><text x="912" y="231">Start:</text><text x="1012" y="231">106.6 ms</text></g><g><text x="912" y="261">Stop:</text><text x="1012" y="261">120.0 ms</text></g><g><text x="912" y="291">Transferred:</text><text x="1012" y="291">4.3 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e5:c1"><text x="912" y="347" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l39"><text x="1002" y="347" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="912" y="377" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="520.0289448477647" y="125" width="42.79718193380894" height="18" fill="#18c852" /><rect x="562.8261267815736" y="125" width="68.07045165477642" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="519.7370781929621" y="0" width="111.27267302790324" height="516" fill="green" opacity="0.05" class="call-sel" /><rect x="519.7370781929621" y="143" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#success" x="533.7370781929621" y="157" width="20" height="20" /><text x="563.7370781929621" y="173" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:models  200</text><g><rect x="545.7370781929621" y="189" width="20" height="20" fill="#1d9688" /><text x="581.7370781929621" y="206">DNS lookup</text><text x="725.7370781929621" y="206">0.0 µs</text></g><g><rect x="545.7370781929621" y="219" width="20" height="20" fill="#fa7f03" /><text x="581.7370781929621" y="236">TCP handshake</text><text x="725.7370781929621" y="236">0.0 µs</text></g><g><rect x="545.7370781929621" y="249" width="20" height="20" fill="#9933ff" /><text x="581.7370781929621" y="266">SSL handshake</text><text x="725.7370781929621" y="266">0.0 µs</text></g><g><rect x="545.7370781929621" y="279" width="20" height="20" fill="#18c852" /><text x="581.7370781929621" y="296">Wait</text><text x="725.7370781929621" y="296">7.2 ms</text></g><g><rect x="545.7370781929621" y="309" width="20" height="20" fill="#36a9f4" /><text x="581.7370781929621" y="326">Data transfer</text><text x="725.7370781929621" y="326">11.4 ms</text></g><g font-weight="bold"><text x="581.7370781929621" y="356">Total</text><text x="725.7370781929621" y="356">18.7 ms</text></g><g><text x="899.7370781929621" y="207">Start:</text><text x="999.7370781929621" y="207">87.3 ms</text></g><g><text x="899.7370781929621" y="237">Stop:</text><text x="999.7370781929621" y="237">105.9 ms</text></g><g><text x="899.7370781929621" y="267">Transferred:</text><text x="999.7370781929621" y="267">8.4 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e4:c1"><text x="899.7370781929621" y="323" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l31"><text x="989.7370781929621" y="323" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="899.7370781929621" y="353" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="403.93153732210436" y="101" width="63.86518924068191" height="18" fill="#18c852" /><rect x="467.79672656278626" y="101" width="47.6755245926523" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="403.556280194501" y="0" width="112.10062129356777" height="516" fill="green" opacity="0.05" class="call-sel" /><rect x="403.556280194501" y="119" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#success" x="417.556280194501" y="133" width="20" height="20" /><text x="447.556280194501" y="149" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:datasets/colle...  200</text><g><rect x="429.556280194501" y="165" width="20" height="20" fill="#1d9688" /><text x="465.556280194501" y="182">DNS lookup</text><text x="609.556280194501" y="182">0.0 µs</text></g><g><rect x="429.556280194501" y="195" width="20" height="20" fill="#fa7f03" /><text x="465.556280194501" y="212">TCP handshake</text><text x="609.556280194501" y="212">0.0 µs</text></g><g><rect x="429.556280194501" y="225" width="20" height="20" fill="#9933ff" /><text x="465.556280194501" y="242">SSL handshake</text><text x="609.556280194501" y="242">0.0 µs</text></g><g><rect x="429.556280194501" y="255" width="20" height="20" fill="#18c852" /><text x="465.556280194501" y="272">Wait</text><text x="609.556280194501" y="272">10.7 ms</text></g><g><rect x="429.556280194501" y="285" width="20" height="20" fill="#36a9f4" /><text x="465.556280194501" y="302">Data transfer</text><text x="609.556280194501" y="302">8.0 ms</text></g><g font-weight="bold"><text x="465.556280194501" y="332">Total</text><text x="609.556280194501" y="332">18.8 ms</text></g><g><text x="783.556280194501" y="183">Start:</text><text x="883.556280194501" y="183">67.8 ms</text></g><g><text x="783.556280194501" y="213">Stop:</text><text x="883.556280194501" y="213">86.6 ms</text></g><g><text x="783.556280194501" y="243">Transferred:</text><text x="883.556280194501" y="243">4.8 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e3:c1"><text x="783.556280194501" y="299" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l22"><text x="873.556280194501" y="299" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="783.556280194501" y="329" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="178.56282811575846" y="77" width="69.07113732838532" height="18" fill="#18c852" /><rect x="247.63396544414377" y="77" width="150.09689457899117" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="178.1160934400402" y="0" width="219.96024139898353" height="516" fill="green" opacity="0.05" class="call-sel" /><rect x="178.1160934400402" y="95" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#success" x="192.1160934400402" y="109" width="20" height="20" /><text x="222.1160934400402" y="125" font-weight="bold">GET http://prez:8010/catalogues/bdr-cat:datasets  200</text><g><rect x="204.1160934400402" y="141" width="20" height="20" fill="#1d9688" /><text x="240.1160934400402" y="158">DNS lookup</text><text x="384.11609344004023" y="158">0.0 µs</text></g><g><rect x="204.1160934400402" y="171" width="20" height="20" fill="#fa7f03" /><text x="240.1160934400402" y="188">TCP handshake</text><text x="384.11609344004023" y="188">0.0 µs</text></g><g><rect x="204.1160934400402" y="201" width="20" height="20" fill="#9933ff" /><text x="240.1160934400402" y="218">SSL handshake</text><text x="384.11609344004023" y="218">0.0 µs</text></g><g><rect x="204.1160934400402" y="231" width="20" height="20" fill="#18c852" /><text x="240.1160934400402" y="248">Wait</text><text x="384.11609344004023" y="248">11.6 ms</text></g><g><rect x="204.1160934400402" y="261" width="20" height="20" fill="#36a9f4" /><text x="240.1160934400402" y="278">Data transfer</text><text x="384.11609344004023" y="278">25.2 ms</text></g><g font-weight="bold"><text x="240.1160934400402" y="308">Total</text><text x="384.11609344004023" y="308">36.9 ms</text></g><g><text x="558.1160934400402" y="159">Start:</text><text x="658.1160934400402" y="159">29.9 ms</text></g><g><text x="558.1160934400402" y="189">Stop:</text><text x="658.1160934400402" y="189">66.8 ms</text></g><g><text x="558.1160934400402" y="219">Transferred:</text><text x="658.1160934400402" y="219">8.9 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e2:c1"><text x="558.1160934400402" y="275" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l13"><text x="648.1160934400402" y="275" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="558.1160934400402" y="305" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g><g><g class="call-summary"><rect x="0" y="53" width="2.1681522928192702" height="18" fill="#1d9688" /><rect x="2.1681522928192702" y="53" width="0.7386013305208502" height="18" fill="#fa7f03" /><rect x="3.109273342999063" y="53" width="56.95569292290621" height="18" fill="#18c852" /><rect x="60.06496626590527" y="53" width="107.88940241713033" height="18" fill="#36a9f4" /></g><g class="call-detail" font-family="sans-serif" font-size="17px"><rect x="0" y="0" width="168.40110335875386" height="516" fill="red" opacity="0.05" class="call-sel" /><rect x="6" y="71" width="600" height="235" fill="white" class="call-back" filter="url(#shadow)" stroke="#ccc" stroke-width="1" /><g class="call-legend" fill="#555"><use href="#failure" x="20" y="85" width="20" height="20" /><text x="50" y="101" fill="red" font-weight="bold">GET http://prez:8010/catalogues  200</text><g><rect x="32" y="117" width="20" height="20" fill="#1d9688" /><text x="68" y="134">DNS lookup</text><text x="212" y="134">364.0 µs</text></g><g><rect x="32" y="147" width="20" height="20" fill="#fa7f03" /><text x="68" y="164">TCP handshake</text><text x="212" y="164">124.0 µs</text></g><g><rect x="32" y="177" width="20" height="20" fill="#18c852" /><text x="68" y="194">Wait</text><text x="212" y="194">9.6 ms</text></g><g><rect x="32" y="207" width="20" height="20" fill="#36a9f4" /><text x="68" y="224">Data transfer</text><text x="212" y="224">18.1 ms</text></g><g font-weight="bold"><text x="68" y="254">Total</text><text x="212" y="254">28.2 ms</text></g><g><text x="386" y="135">Start:</text><text x="486" y="135">0.0 µs</text></g><g><text x="386" y="165">Stop:</text><text x="486" y="165">28.3 ms</text></g><g><text x="386" y="195">Transferred:</text><text x="486" y="195">6.2 kB</text></g><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-run.html#e1:c1"><text x="386" y="251" fill="royalblue" text-decoration="underline">(view run)</text></a><a href="48dd9f98-313c-42b4-9ae8-fc7f97d1ea09-source.html#l2"><text x="476" y="251" fill="royalblue" text-decoration="underline">(view source)</text></a><a href="https://hurl.dev/docs/response.html#timings"><text x="386" y="281" fill="royalblue" text-decoration="underline">Explanation</text></a></g></g></g></svg></div>
+    </div>
+</div>
+</body>
+</html>
