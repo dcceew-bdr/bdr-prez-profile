@@ -1,6 +1,7 @@
 services:
   prez:
-    image: gswadevacr.azurecr.io/prez:custom-config-16
+#    image: ghcr.io/rdflib/prez:4.23.3
+    image: gswadevacr.azurecr.io/prez:custom-config-28
     container_name: prez-test
     ports:
       - "8010:8010"
@@ -17,19 +18,13 @@ services:
     volumes:
       - ./vocabs/catalogues_endpoints.ttl:/app/reference_data/endpoints/data_endpoints_custom/catalogues_endpoints.ttl:ro
       - /home/david/PycharmProjects/bdr-catalogues/dump:/app/data:ro
-    healthcheck:
-      test: ["CMD-SHELL", "wget -q -O - http://0.0.0.0:8010/health | grep -q '\"status\":\"ok\"'"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
-      start_period: 10s
 
   hurl:
     image: ghcr.io/orange-opensource/hurl:latest
     container_name: hurl-test
     depends_on:
       prez:
-        condition: service_healthy
+        condition: service_started
     volumes:
       - ./test:/test:ro
       - ./test/reports:/reports

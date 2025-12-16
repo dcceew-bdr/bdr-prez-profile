@@ -41,7 +41,7 @@ customendpoints:shape-R0-HL1 a sh:NodeShape ;
     sh:targetClass dcat:Catalog , schema:DataCatalog ;
     sh:property [
       sh:path [ sh:alternativePath ( [ sh:inversePath schema:isPartOf ] schema:hasPart )] ;
-      sh:class schema:DataCatalog ;
+      sh:or ( [ sh:class schema:DataCatalog ]  [ sh:class owl:Ontology ] ) ;
     ] ;
 #    sh:property [
 #      sh:path (
@@ -53,7 +53,7 @@ customendpoints:shape-R0-HL1 a sh:NodeShape ;
     ont:hierarchyLevel 1 .
 
 customendpoints:shape-R0-HL2 a sh:NodeShape ;
-    sh:targetClass schema:DataCatalog ;
+    sh:targetClass schema:DataCatalog , owl:Ontology ;
     sh:property [
       sh:path [ sh:alternativePath ( [ sh:inversePath schema:hasPart ] schema:isPartOf )] ;
       sh:class schema:DataCatalog ;
