@@ -1,7 +1,7 @@
 services:
   prez:
-#    image: ghcr.io/rdflib/prez:4.23.3
-    image: gswadevacr.azurecr.io/prez:custom-config-28
+    image: bdrdevreg.azurecr.io/prez:4.23.4-pr450
+#    image: gswadevacr.azurecr.io/prez:custom-config-28
     container_name: prez-test
     ports:
       - "8010:8010"
